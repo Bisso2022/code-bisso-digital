@@ -1,0 +1,531 @@
+@font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+        #l2{
+            color: #2292F2 !important;
+        }
+.section_apropos_header{
+    background-image:  url("../image_site/header_apropos.jpg") ;
+    width: 100%;
+    height: 100vh;
+    min-height: 450px;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+.section_apropos_header .container .col-md-10 h1{
+    color: white;
+    font-family: 'pourTitre';
+    font-size: 70px;
+    text-align: center;
+    margin-top: 17%;
+}
+.section_apropos_section1 .container-fluid .left{
+    background-color: #9ECCD0;
+}
+.section_apropos_section1 .container-fluid .left h1{
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'pourTitre';
+    margin-top: 24%;
+    text-align: center;
+}
+.section_apropos_section1 .container-fluid .left p{
+    font-size: 28px;
+    margin-top: 7px;
+    text-align: center;
+    color: white;
+    font-family: 'pourTitre';
+}
+.section_apropos_section1 .container-fluid .rigth{
+    background-color: #eaefeb;
+}
+.section_apropos_section1 .container-fluid .rigth p{
+    font-size: 18px;
+    margin-top: 15%;
+    color: #353636;
+    text-align: justify;
+    font-family: 'pourPara';  
+}
+.section_apropos_section1 .container-fluid .rigth .btn-primary{
+    font-size: 18px;
+    border-radius: 25px;
+    background-color: #2292F2 !important;
+    border: 2px solid #2292F2 !important;
+    box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+    width: 250px;
+    margin-top: 12px;
+    margin-bottom: 25%;
+}
+.section_apropos_section1 .container-fluid .rigth .btn-primary:hover{
+    background-color: white !important;
+    color: #2292F2 !important;
+    border: 2px solid white !important;
+}
+
+/*section3*/
+.section_apropos_section3{
+    background-color: white !important;
+}
+.section_apropos_section3 .container h1{
+    text-align: center;
+    color: #2292F2;
+    font-size: 35px;
+    font-family: 'pourPara';
+    text-transform: uppercase;
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+.section_apropos_section3 .container .col-md-3 .card{
+    border: none !important;
+    background-color: #FFFFFF !important;
+}
+
+.section_apropos_section3 .container .col-md-3 .card h5{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 18px;
+    color: #2292F2;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.section_apropos_section3 .container .col-md-3 .card p{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 17px;
+    color: #033c49;
+}
+.section_apropos_section3 .container h4{
+    font-size: 26px;
+    color: #2292F2;
+    text-align: center;
+    margin-bottom: 2%;
+}
+/*pour la partie team*/
+.section_apropos_team{
+    background-color: white;
+}
+.section_apropos_team .col-md-5{
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+.section_apropos_team .col-md-5 h1{
+    margin-top: 13%;
+    text-align: center;
+    font-family: 'pourPara';
+    text-transform: capitalize;
+    font-size: 50px;
+    color: #3F3D56;
+}
+.section_apropos_team .col-md-5 p{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 17px;
+    color: #3F3D56;
+    margin-top: 12px;
+}
+.section_apropos_team .col-md-5 .btn-primary{
+    border-radius: 25px;
+    background-color: #2292F2;
+    border-color: #2292F2;
+    font-family: 'pourPara';
+    font-size: 17px;
+    width: 280px;
+    height: 50px;
+    box-shadow: 1px 1px 12px #353636a5;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+.section_apropos_team .col-md-5 .btn-primary:hover{
+    background-color: #3F3D56;
+    border-color: #3F3D56;
+}
+/*##################RESPONSIVE DESIGN#######################*/
+@media (min-width: 769px) and (max-width: 990px){
+    /*pour le header*/
+    .section_apropos_header .container .col-md-10 h1{
+        color: white;
+        font-family: 'pourTitre';
+        font-size: 60px;
+        text-align: center;
+        margin-top:32%;
+    }
+    /*pour la section apres header*/
+    .section_apropos_section1 .container-fluid .left h1{
+        font-size: 40px;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'pourTitre';
+        margin-top: 62%;
+        text-align: center;
+    }
+    /*pour la partie de mot expert innovation*/
+    .section_apropos_section2 .container-fluid .col-a h1{
+        font-size: 50px;
+        font-family: 'pourTitre';
+        margin-top: 12%;
+        color: #1a7ff2b7;
+        text-align: left;
+    }
+    .section_apropos_section2 .container-fluid .col-b h1{
+        font-size: 60px;
+        font-family: 'pourTitre';
+        margin-top: 22%;
+        color: #1674e6cb;
+        text-align: center;
+    }
+    .section_apropos_section2 .container-fluid .col-c h1{
+        font-size: 65px;
+        font-family: 'pourTitre';
+        margin-top: 48%;
+        color: #26e3e0e9;
+        margin-bottom: 25%;
+    }
+    /*pour notre partie*/
+    .section_apropos_section3 .container h1{
+        text-align: center;
+        color: #2292F2;
+        font-size: 32px;
+        font-family: 'pourPara';
+        text-transform: uppercase;
+        margin-top: 4%;
+        margin-bottom: 3%;
+    }
+    /*parti historique*/
+    .section_apropos_team .col-md-5 h1{
+        margin-top: 13%;
+        text-align: center;
+        font-family: 'pourPara';
+        text-transform: capitalize;
+        font-size: 35px;
+        color: #3F3D56;
+    }
+    .section_apropos_team .col-md-5 p{
+        text-align: left;
+        font-family: 'pourPara';
+        font-size: 17px;
+        color: #3F3D56;
+        margin-top: 12px;
+    }
+    .section_apropos_team .col-md-5 img{
+        margin-top: 60%;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px){
+     /*pour le header*/
+     .section_apropos_header .container .col-md-10 h1{
+        color: white;
+        font-family: 'pourTitre';
+        font-size: 40px;
+        text-align: center;
+        margin-top:32%;
+    }
+    /*pour la section apres header*/
+    .section_apropos_section1 .container-fluid .left h1{
+        font-size: 35px;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'pourTitre';
+        margin-top: 10%;
+        text-align: center;
+    }
+    .section_apropos_section1 .container-fluid .left p{
+        margin-bottom: 20%;
+    }
+    /*pour la partie de mot expert innovation*/
+    .section_apropos_section2 .container-fluid .col-a h1{
+        font-size: 36px;
+        font-family: 'pourTitre';
+        margin-top: 12%;
+        color: #1a7ff2b7;
+        text-align: left;
+    }
+    .section_apropos_section2 .container-fluid .col-b h1{
+        font-size: 38px;
+        font-family: 'pourTitre';
+        margin-top: 12%;
+        color: #1674e6cb;
+        text-align: center;
+    }
+    .section_apropos_section2 .container-fluid .col-c h1{
+        font-size: 42px;
+        font-family: 'pourTitre';
+        margin-top: 15%;
+        color: #26e3e0e9;
+        margin-bottom: 10%;
+    }
+    /*pour notre partie*/
+    .section_apropos_section3 .container h1{
+        text-align: center;
+        color: #2292F2;
+        font-size: 26px;
+        font-family: 'pourPara';
+        text-transform: uppercase;
+        margin-top: 8%;
+        margin-bottom: 12%;
+    }
+    /*parti historique*/
+    .section_apropos_team .col-md-5{
+        margin-top: auto !important;
+    }
+    .section_apropos_team .col-md-5 h1{
+        margin-top: 13%;
+        text-align: center;
+        font-family: 'pourPara';
+        text-transform: capitalize;
+        font-size: 26px;
+        color: #3F3D56;
+    }
+    .section_apropos_team .col-md-5 p{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 17px;
+        color: #3F3D56;
+        margin-top: 12px;
+    }
+}
+@media (min-width: 321px) and (max-width: 480px){
+     /*pour le header*/
+     .section_apropos_header{
+        background-image:  url("../image_site/header_apropos.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        
+    }
+     .section_apropos_header .container .col-md-10 h1{
+        color: white;
+        font-family: 'pourPara';
+        font-size: 26px;
+        text-align: center;
+        margin-top:32%;
+    }
+    /*pour la section apres header*/
+    .section_apropos_section1 .container-fluid .left h1{
+        font-size: 26px;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'pourPara';
+        margin-top: 10%;
+        text-align: center;
+    }
+    .section_apropos_section1 .container-fluid .left p{
+        margin-bottom: 20%;
+        font-size: 18px;
+        font-family: 'pourPara';
+    }
+    .section_apropos_section1 .container-fluid .rigth p{
+        font-size: 18px;
+        margin-top: 15%;
+        color: #353636;
+        text-align: center;
+        font-family: 'pourPara';  
+    }
+    .section_apropos_section1 .container-fluid .rigth .btn-primary{
+        font-size: 18px;
+        border-radius: 25px;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+        width: 250px;
+        margin-top: 12px;
+        margin-bottom: 25%;
+    }
+    /*pour la partie de mot expert innovation*/
+    .section_apropos_section2 .container-fluid .col-a h1{
+        font-size: 30px;
+           font-family: 'pourPara';  
+        margin-top: 12%;
+        color: #1a7ff2b7;
+        text-align: left;
+    }
+    .section_apropos_section2 .container-fluid .col-b h1{
+        font-size: 32px;
+           font-family: 'pourPara';  
+        margin-top: 12%;
+        color: #1674e6cb;
+        text-align: center;
+    }
+    .section_apropos_section2 .container-fluid .col-c h1{
+        font-size: 34px;
+           font-family: 'pourPara';  
+        margin-top: 15%;
+        color: #26e3e0e9;
+        margin-bottom: 10%;
+    }
+    /*pour notre partie*/
+    .section_apropos_section3 .container h1{
+        text-align: center;
+        color: #2292F2;
+        font-size: 22px;
+        font-family: 'pourPara';  
+        text-transform: uppercase;
+        margin-top: 8%;
+        margin-bottom: 12%;
+    }
+    /*parti historique*/
+    .section_apropos_team .col-md-5{
+        margin-top: auto !important;
+    }
+    .section_apropos_team .col-md-5 h1{
+        margin-top: 13%;
+        text-align: center;
+        font-family: 'pourPara';
+        text-transform: capitalize;
+        font-size: 26px;
+        color: #3F3D56;
+    }
+    .section_apropos_team .col-md-5 p{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 17px;
+        color: #3F3D56;
+        margin-top: 12px;
+    }
+}
+@media (max-width: 320px){
+      /*pour le header*/
+      .section_apropos_header{
+        background-image:  url("../image_site/header_apropos.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        
+    }
+     .section_apropos_header .container .col-md-10 h1{
+        color: white;
+        font-family: 'pourPara';
+        font-size: 26px;
+        text-align: center;
+        margin-top:32%;
+    }
+    /*pour la section apres header*/
+    .section_apropos_section1 .container-fluid .left h1{
+        font-size: 26px;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'pourPara';
+        margin-top: 10%;
+        text-align: center;
+    }
+    .section_apropos_section1 .container-fluid .left p{
+        margin-bottom: 20%;
+        font-size: 18px;
+        font-family: 'pourPara';
+    }
+    .section_apropos_section1 .container-fluid .rigth p{
+        font-size: 18px;
+        margin-top: 15%;
+        color: #353636;
+        text-align: center;
+        font-family: 'pourPara';  
+    }
+    .section_apropos_section1 .container-fluid .rigth{
+        text-align:  center !important;
+        align-items:  center !important;
+    }
+    .section_apropos_section1 .container-fluid .rigth .btn-primary{
+        font-size: 18px;
+        border-radius: 25px;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+        width: auto !important;
+        height: auto !important;
+        margin-top: 12px;
+        margin-bottom: 25%;
+    }
+    /*pour la partie de mot expert innovation*/
+    .section_apropos_section2 .container-fluid .col-a h1{
+        font-size: 30px;
+           font-family: 'pourPara';  
+        margin-top: 12%;
+        color: #1a7ff2b7;
+        text-align: left;
+    }
+    .section_apropos_section2 .container-fluid .col-b h1{
+        font-size: 32px;
+           font-family: 'pourPara';  
+        margin-top: 12%;
+        color: #1674e6cb;
+        text-align: center;
+    }
+    .section_apropos_section2 .container-fluid .col-c h1{
+        font-size: 34px;
+           font-family: 'pourPara';  
+        margin-top: 15%;
+        color: #26e3e0e9;
+        margin-bottom: 10%;
+    }
+    /*pour notre partie*/
+    .section_apropos_section3 .container h1{
+        text-align: center;
+        color: #2292F2;
+        font-size: 22px;
+        font-family: 'pourPara';  
+        text-transform: uppercase;
+        margin-top: 8%;
+        margin-bottom: 12%;
+    }
+    /*parti historique*/
+    .section_apropos_team .col-md-5{
+        margin-top: auto !important;
+        align-items: center;
+    }
+    .section_apropos_team .col-md-5 h1{
+        margin-top: 13%;
+        text-align: center;
+        font-family: 'pourPara';
+        text-transform: capitalize;
+        font-size: 26px;
+        color: #3F3D56;
+    }
+    .section_apropos_team .col-md-5 p{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 17px;
+        color: #3F3D56;
+        margin-top: 12px;
+    }
+    .section_apropos_section1 .container-fluid .rigth .btn-primary{
+        font-size: 18px;
+        border-radius: 25px;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+        width: auto !important;
+        height: auto !important;
+        margin-top: 12px;
+        margin-bottom: 25%;
+    }
+    .section_apropos_team .col-md-5 .btn-primary{
+        border-radius: 25px;
+        background-color: #2292F2;
+        border-color: #2292F2;
+        font-family: 'pourPara';
+        font-size: 17px;
+        width: auto !important;
+        height: auto !important;
+        box-shadow: 1px 1px 12px #353636a5;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+}

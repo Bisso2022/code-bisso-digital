@@ -1,0 +1,757 @@
+@font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+        #l6{
+            color: #2292F2 !important;
+        }
+.section_service_header{
+    background-image:  url("../image_site/header_service.jpg") ;
+    width: 100%;
+    height: 100vh;
+    min-height: 450px;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_service_header .col-md-10{
+    text-align: center;
+    color: white;
+    align-items: center;
+    margin-top: 15%;
+}
+.section_service_header .col-md-10 h1{
+    font-family: 'pourTitre';
+    font-size: 68px;
+    letter-spacing: 0.0625em;
+    word-spacing: 2px;
+}
+/*pour la section 1*/
+.section_service_section1{
+    background-color: #F4F4F4;
+}
+
+.section_service_section1 .container-fluid .left{
+    background-color: #4ea3d4;
+}
+.section_service_section1 .container-fluid .left h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 45px;
+    text-align: center;
+    color: white;
+}
+.section_service_section1 .container-fluid .left p{
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-family: 'pourMinTitre';
+    margin-bottom: 15%;
+}
+.section_service_section1 .container-fluid .right{
+    background-color: #F6F6F6;
+}
+.section_service_section1 .container-fluid .right h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 45px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3F3D56;
+}
+.section_service_section1 .container-fluid .right p{
+    text-align: center;
+    color: #3F3D56;
+    font-size: 19px;
+    font-family: 'pourPara';
+    margin-bottom: 15%;
+}
+/*pour la partie site web*/
+.section_service_site{
+    background-color: white;
+}
+.section_service_site .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_site .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 44px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_site .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+.section_service_site .container .col-md-5 ul li{
+    list-style-type: none;
+    margin-left: -30px;
+    font-family: 'pourPara';
+    color: #3F3D56;
+    font-size: 17px;
+}
+.section_service_site .container .col-md-5 ul li:hover{
+    font-size: 17px;
+    margin-left: 1px;
+    transition: 0.5s;
+}
+/*style offre site web*/
+.section_service_offre_site{
+    background-color: #F6F6F6;
+}
+
+.section_service_offre_site .container h1{
+    font-family: 'pourPara';
+    font-size: 35px;
+    color: #323232;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+.section_service_offre_site .container .col-md-4{
+    margin-bottom: 7%;
+}
+.section_service_offre_site .container .col-md-4 .card .card-header{
+    font-size: 22px;
+    font-family: 'pourPara';
+    border: none;
+    background-color: #949494;
+    text-align: center;
+    color: white;
+}
+.section_service_offre_site .container .col-md-4 .card .card-body h5{
+    font-size: 18px;
+    font-family: 'pourPara';
+}
+.section_service_offre_site .container .col-md-4 .card .card-body p{
+    font-size: 15px;
+    font-family: 'pourPara';
+    
+}
+.section_service_offre_site .container .col-md-4 .card .card-body .btn-primary{
+    border-radius: 0px;
+    background-color: white;
+    color: #949494;
+    border-color: #949494;
+    font-size: 17px;
+    font-family: 'pourPara';
+}
+.section_service_offre_site .container .col-md-4 .card .card-body .btn-primary:hover{
+    border-radius: 0px;
+    background-color: #949494;
+    color: white;
+    border-color: #949494;
+    font-size: 17px;
+    font-family: 'pourPara';
+}
+/*partie des application web et mobile*/
+.section_service_application{
+    background-color: white;
+}
+.section_service_application .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_application .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 32px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_application .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+.section_service_application .container .col-md-5 ul li{
+    list-style-type: none;
+    margin-left: -30px;
+    font-family: 'pourPara';
+    color: #3F3D56;
+    font-size: 17px;
+}
+.section_service_application .container .col-md-5 ul li:hover{
+    font-size: 17px;
+    margin-left: 1px;
+    transition: 0.5s;
+}
+.section_service_application .container .col-md-5 img{
+    margin-top: 14%;
+}
+/*pour la partie logiciele de bureau*/
+.section_service_logiciel{
+    background-color: white;
+}
+.section_service_logiciel .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_logiciel .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 48px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_logiciel .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+.section_service_logiciel .container .col-md-5 ul li{
+    list-style-type: none;
+    margin-left: -30px;
+    font-family: 'pourPara';
+    color: #323232ce;
+    font-size: 17px;
+}
+.section_service_logiciel .container .col-md-5 ul li:hover{
+    font-size: 17px;
+    margin-left: 1px;
+    transition: 0.5s;
+}
+/*pour la partie projet*/
+.section_service_projet{
+    background-color: white;
+}
+.section_service_projet .col-md-5{
+    margin-top: 5%;
+    margin-bottom: 8%;
+}
+.section_service_projet .col-md-5 h1{
+    margin-top: 20%;
+    margin-bottom: 12px;
+    font-family: 'pourPara';
+    font-size: 48px;
+    color: #3F3D56;
+}
+.section_service_projet .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+}
+.section_service_projet .col-md-5 .btn-primary{
+    border-radius: 25px;
+    border-color: #137DDA !important;
+    background-color: #137DDA !important;
+    color: white;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-top: 2%;
+    height: 52px;
+    width: 280px;
+    box-shadow:1px 1px  10px #32323284;
+}
+.section_service_projet .col-md-5 .btn-primary:hover{
+    border-color: #3F3D56 !important;
+    background-color: #3F3D56 !important;
+}
+/*########################RESPONSIVE DESIGN*#################################*/
+@media (min-width: 769px) and (max-width: 990px){
+    /*pour la partie header*/
+    .section_service_header{
+        background-image:  url("../image_site/header_service.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_service_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+    }
+    .section_service_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 50px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+    /*pour la section 1*/
+.section_service_section1{
+    background-color: #F4F4F4;
+}
+
+.section_service_section1 .container-fluid .left{
+    background-color: #4ea3d4;
+}
+.section_service_section1 .container-fluid .left h1{
+    margin-top: 24%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 38px;
+    text-align: center;
+    color: white;
+}
+.section_service_section1 .container-fluid .left p{
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    font-family: 'pourMinTitre';
+    margin-bottom: 15%;
+}
+.section_service_section1 .container-fluid .right{
+    background-color: #F6F6F6;
+}
+.section_service_section1 .container-fluid .right h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 36px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3F3D56;
+}
+.section_service_section1 .container-fluid .right p{
+    text-align: center;
+    color: #3F3D56;
+    font-size: 22px;
+    font-family: 'pourPara';
+    margin-bottom: 15%;
+}
+/*pour la partie site web*/
+.section_service_site{
+    background-color: white;
+}
+.section_service_site .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_site .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_site .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+.section_service_site .container .col-md-5 img{
+    margin-top: 35%;
+}
+/*partie offre site web*/
+.section_service_offre_site .container h1{
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #323232;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+/*partie application web et mobilek*/
+.section_service_application .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 28px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_application .container .col-md-5 img{
+    margin-top: 30%;
+}
+/*partie création des logiciel*/
+.section_service_logiciel .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_logiciel .container .col-md-5 img{
+    margin-top: 30%;
+}
+/*pour la partie projet*/
+.section_service_projet .col-md-5 h1{
+    margin-top: 20%;
+    margin-bottom: 12px;
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #3F3D56;
+}
+.section_service_projet .col-md-5 img{
+    margin-top: 30%;
+}
+}
+@media (min-width: 481px) and (max-width: 768px){
+     /*pour la partie header*/
+     .section_service_header{
+        background-image:  url("../image_site/header_service.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_service_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 22%;
+    }
+    .section_service_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 40px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+       /*pour la section 1*/
+.section_service_section1{
+    background-color: #F4F4F4;
+}
+
+.section_service_section1 .container-fluid .left{
+    background-color: #4ea3d4;
+}
+.section_service_section1 .container-fluid .left h1{
+    margin-top: 15%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 28px;
+    text-align: center;
+    color: white;
+}
+.section_service_section1 .container-fluid .left p{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'pourMinTitre';
+    margin-bottom: 15%;
+}
+.section_service_section1 .container-fluid .right{
+    background-color: #F6F6F6;
+}
+.section_service_section1 .container-fluid .right h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3F3D56;
+}
+.section_service_section1 .container-fluid .right p{
+    text-align: center;
+    color: #3F3D56;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-bottom: 15%;
+}
+/*pour la partie site web*/
+.section_service_site{
+    background-color: white;
+}
+.section_service_site .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_site .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 28px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_site .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+/*partie offre site web*/
+.section_service_offre_site .container h1{
+    font-family: 'pourPara';
+    font-size: 28px;
+    color: #323232;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+/*partie application web et mobilek*/
+.section_service_application .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 24px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*partie création des logiciel*/
+.section_service_logiciel .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 26px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*pour la partie projet*/
+.section_service_projet .col-md-5 h1{
+    margin-top: 20%;
+    margin-bottom: 12px;
+    font-family: 'pourPara';
+    font-size: 28px;
+    color: #3F3D56;
+}
+}
+@media (min-width: 321px) and (max-width: 480px){
+    /*pour la partie header*/
+    .section_service_header{
+        background-image:  url("../image_site/header_service.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_service_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 22%;
+    }
+    .section_service_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 28px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+           /*pour la section 1*/
+.section_service_section1{
+    background-color: #F4F4F4;
+}
+
+.section_service_section1 .container-fluid .left{
+    background-color: #4ea3d4;
+}
+.section_service_section1 .container-fluid .left h1{
+    margin-top: 15%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 26px;
+    text-align: center;
+    color: white;
+}
+.section_service_section1 .container-fluid .left p{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'pourMinTitre';
+    margin-bottom: 15%;
+}
+.section_service_section1 .container-fluid .right{
+    background-color: #F6F6F6;
+}
+.section_service_section1 .container-fluid .right h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 26px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3F3D56;
+}
+.section_service_section1 .container-fluid .right p{
+    text-align: center;
+    color: #3F3D56;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-bottom: 15%;
+}
+/*pour la partie site web*/
+.section_service_site{
+    background-color: white;
+}
+.section_service_site .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_site .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 26px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_site .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+/*partie offre site web*/
+.section_service_offre_site .container h1{
+    font-family: 'pourPara';
+    font-size: 24px;
+    color: #323232;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+/*partie application web et mobilek*/
+.section_service_application .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 22px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*partie création des logiciel*/
+.section_service_logiciel .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 22px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*pour la partie projet*/
+.section_service_projet .col-md-5 h1{
+    margin-top: 20%;
+    margin-bottom: 12px;
+    font-family: 'pourPara';
+    font-size: 23px;
+    color: #3F3D56;
+}
+}
+@media (max-width: 320px){
+    /*pour la partie header*/
+    .section_service_header{
+        background-image:  url("../image_site/header_service.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_service_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 22%;
+    }
+    .section_service_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 28px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+           /*pour la section 1*/
+.section_service_section1{
+    background-color: #F4F4F4;
+}
+
+.section_service_section1 .container-fluid .left{
+    background-color: #4ea3d4;
+}
+.section_service_section1 .container-fluid .left h1{
+    margin-top: 15%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 26px;
+    text-align: center;
+    color: white;
+}
+.section_service_section1 .container-fluid .left p{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'pourMinTitre';
+    margin-bottom: 15%;
+}
+.section_service_section1 .container-fluid .right{
+    background-color: #F6F6F6;
+}
+.section_service_section1 .container-fluid .right h1{
+    margin-top: 12%;
+    margin-bottom: 2px;
+    font-family: 'pourTitre';
+    font-size: 26px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3F3D56;
+}
+.section_service_section1 .container-fluid .right p{
+    text-align: center;
+    color: #3F3D56;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-bottom: 15%;
+}
+/*pour la partie site web*/
+.section_service_site{
+    background-color: white;
+}
+.section_service_site .container .col-md-5{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.section_service_site .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 26px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+.section_service_site .container .col-md-5 p{
+    font-family: 'pourPara';
+    font-size:18px;
+    color: #3F3D56;
+    margin-top: 3%;
+}
+/*partie offre site web*/
+.section_service_offre_site .container h1{
+    font-family: 'pourPara';
+    font-size: 24px;
+    color: #323232;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+/*partie application web et mobilek*/
+.section_service_application .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 22px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*partie création des logiciel*/
+.section_service_logiciel .container .col-md-5 h1{
+    font-family: 'pourPara';
+    font-size: 22px;
+    color: #3F3D56;
+    margin-top: 5%;
+}
+/*pour la partie projet*/
+.section_service_projet .col-md-5 h1{
+    margin-top: 20%;
+    margin-bottom: 12px;
+    font-family: 'pourPara';
+    font-size: 23px;
+    color: #3F3D56;
+} 
+.section_service_projet .col-md-5 .btn-primary{
+    border-radius: 25px;
+    border-color: #137DDA !important;
+    background-color: #137DDA !important;
+    color: white;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-top: 2%;
+    width: auto !important;
+    height: auto !important;
+    box-shadow:1px 1px  10px #32323284;
+}
+}

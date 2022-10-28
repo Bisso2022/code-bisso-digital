@@ -1,0 +1,37 @@
+    @font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+/*partie action apres scroll*/
+.fixed-top {
+    top: -40px;
+    transform: translateY(40px);
+    transition: transform .3s;
+    background-color: white!important;
+    box-shadow: 0px 3px 3px -4px #000000, 4px 3px 4px 4px rgba(0,0,0,0);
+ }
+ .nav-link1{
+    color: #363535 !important;
+}
+.navbar-nav .nav-item a:hover{
+    color: #2292F2 !important;
+}
+.nav-link{
+    font-size: 17px;
+    margin: 12px 8px;
+    margin-top: 18px;
+    color: white;
+    font-family: 'pourPara';
+    text-transform: capitalize;
+}
+/*style responsive table */
+
+ 

@@ -1,0 +1,269 @@
+@font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+        #l4{
+            color: #2292F2 !important;
+        }
+.section_blog_header{
+    background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_devis.jpg") ;
+    width: 100%;
+    height: 100vh;
+    min-height: 450px;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_blog_header .col-md-10{
+    text-align: center;
+    color: white;
+    align-items: center;
+    margin-top: 16%;
+}
+.section_blog_header .col-md-10 h1{
+    font-family: 'pourTitre';
+    font-size: 70px;
+    word-spacing: 2px;
+    margin-bottom: 18px;
+}
+/*section1*/
+.section_blog_section1{
+    background-image: url("../image_site/BG-whitebac.png") ;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_blog_section1 .container h1{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 32px;
+    margin-top: 4%;
+}
+.section_blog_section1 .container p{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 18px;
+    margin-top: 10px;
+}
+.section_blog_section1 .container .col-md-12 h2{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 25px;
+    margin-top: 10px;
+}
+.section_blog_section1 .container .col-md-12 p{
+    text-align: center;
+    font-family: 'pourPara';
+    font-size: 17px;
+    margin-top: 10px;
+}
+.section_blog_section1 .container .col-md-12 .card{
+    margin-bottom: 16px;
+}
+.section_blog_section1 .container .col-md-12 form label{
+    font-family: 'pourPara';
+    font-size: 16px;
+    margin-bottom: 7px;
+    margin-top: 8px;
+}
+.section_blog_section1 .container .col-md-12 form select{
+    font-family: 'pourPara';
+    font-size: 16px;
+    height: 40px !important;
+}
+.section_blog_section1 .container .col-md-12 form .form-control{
+    font-family: 'pourPara';
+    font-size: 16px;
+    height: 38px !important;
+}
+.section_blog_section1 .container .col-md-12 form .textarea{
+    font-family: 'pourPara';
+    font-size: 16px;
+    height: 90px !important;
+}
+.section_blog_section1 .container .col-md-12 form .btn-primary{
+    text-align: center;
+    font-size: 17px;
+    font-family: 'pourPara';
+    border-radius: 25px;
+    width: 280px !important;
+    height: 48px !important;
+    background-color: #2292F2 !important;
+    border-color: #2292F2 !important;
+    margin-bottom: 5%;
+}
+.section_blog_section1 .container .col-md-12 form .btn-primary:hover{
+    background-color: #05828b !important;
+    border-color: #05828b !important;
+}
+.section_blog_section1 .container .col-md-12 .alert-success{
+    font-size: 17px;
+    font-family: 'pourPara';
+    border-radius: 25px;
+}
+/*##########################partie pour le responsive design#######################"*/
+@media (min-width: 769px) and (max-width: 990px){
+    /*pour la partie header*/
+    .section_blog_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_devis.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_blog_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 26%;
+    }
+    .section_blog_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 52px;
+        word-spacing: 2px;
+        margin-bottom: 18px;
+    }
+    /*pour la partie apres le header*/
+    .section_blog_section1 .container h1{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 28px;
+        margin-top: 4%;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px){
+     /*pour la partie header*/
+     .section_blog_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_devis.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_blog_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 38%;
+    }
+    .section_blog_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 40px;
+        word-spacing: 2px;
+        margin-bottom: 18px;
+    }
+    /*pour la partie apres le header*/
+    .section_blog_section1 .container h1{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 22px;
+        margin-top: 4%;
+    }
+    .section_blog_section1 .container .col-md-12 h2{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 20px;
+        margin-top: 10px;
+    }
+}
+@media (min-width: 321px) and (max-width: 480px){
+     /*pour la partie header*/
+     .section_blog_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_devis.jpg") ;
+        width: 100%;
+       height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_blog_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 20%;
+    }
+    .section_blog_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 30px;
+        word-spacing: 2px;
+        margin-bottom: 18px;
+    }
+    /*pour la partie apres le header*/
+    .section_blog_section1 .container h1{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 20px;
+        margin-top: 4%;
+    }
+    .section_blog_section1 .container .col-md-12 h2{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 19px;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 320px){
+     /*pour la partie header*/
+     .section_blog_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_devis.jpg") ;
+        width: 100%;
+       height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_blog_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 20%;
+    }
+    .section_blog_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 26px;
+        word-spacing: 2px;
+        margin-bottom: 18px;
+    }
+    /*pour la partie apres le header*/
+    .section_blog_section1 .container h1{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 20px;
+        margin-top: 4%;
+    }
+    .section_blog_section1 .container .col-md-12 h2{
+        text-align: center;
+        font-family: 'pourPara';
+        font-size: 19px;
+        margin-top: 10px;
+    }
+    .section_blog_section1 .container .col-md-12 form .btn-primary{
+        text-align: center;
+        font-size: 17px;
+        font-family: 'pourPara';
+        border-radius: 25px;
+        width: 100% !important;
+        height: auto !important;
+        background-color: #2292F2 !important;
+        border-color: #2292F2 !important;
+        margin-bottom: 5%;
+    }
+}

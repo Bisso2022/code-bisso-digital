@@ -1,0 +1,408 @@
+@font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+        #l5{
+            color: #2292F2 !important;
+        }
+body{
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.section_contact_header{
+    background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_contact.jpg") ;
+    width: 100%;
+    height: 100vh;
+    min-height: 450px;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_contact_header .col-md-10{
+    text-align: center;
+    color: white;
+    align-items: center;
+    margin-top: 15%;
+}
+.section_contact_header .col-md-10 h1{
+    font-family: 'pourTitre';
+    font-size: 68px;
+    letter-spacing: 0.0625em;
+    word-spacing: 2px;
+}
+/*section1*/
+
+.section_contact_section1{
+    background-image: url("../image_site/BG-whitebac.png") ;
+    height: 70vh;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_contact_section1 .left{
+    margin-bottom: 150px;
+    margin-top: 100px;
+}
+.section_contact_section1 .rigth{
+    margin-bottom: 150px;
+    margin-top: 100px;
+}
+.section_contact_section1 .left h1{
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #363535;
+}
+.section_contact_section1 .left p{
+    font-family: 'pourPara';
+    font-size: 18px;
+    color: #363535;
+    margin-top: 15px;
+    text-align: justify;
+}
+.section_contact_section1 .rigth h1{
+    font-family: 'pourPara';
+    font-size: 30px;
+    color: #363535;
+}
+.section_contact_section1 .rigth p{
+    font-family: 'pourPara';
+    font-size: 18px;
+    color: #363535;
+    margin-top: 15px;
+    margin-top: 12px;
+    text-align: justify;
+}
+.section_contact_section1 .rigth ul li{
+    font-size: 18px;
+    text-align: justify;
+    font-family: 'pourPara';
+    margin-top: 4px;
+    list-style-type: none;
+    margin-left: -30px;
+    margin-bottom: 7px;
+}
+/*section contact formulaire*/
+.section_contact_formulaire{
+    background-color: #eaefeb;
+}
+.section_contact_formulaire .container-fluid h1{
+    font-size: 38px;
+    font-family: 'pourPara';
+    text-align: center !important;
+    margin-top: 4%;
+    margin-bottom: 3%;
+    color: #3F3D56;
+}
+.section_contact_formulaire .container-fluid .col-md-8 label{
+    font-size: 17px;
+    font-family: 'pourPara';
+    margin-bottom: 5px;
+}
+.section_contact_formulaire .container-fluid .col-md-8 input{
+    border-radius: 25px !important;
+    height: 46px !important;
+    margin-bottom: 2% !important;
+    font-size: 17px;
+    font-family: 'pourPara';
+    background-color: #76787620;
+}
+.section_contact_formulaire .container-fluid .col-md-8 textarea{
+    font-size: 17px;
+    font-family: 'pourPara';
+    border-radius: 25px !important;
+    background-color: #76787620;
+    margin-bottom: 2%;
+}
+.section_contact_formulaire .container-fluid .col-md-8 .btn-primary{
+    width: 200px !important;
+    height: 46px !important;
+    border-radius: 25px !important;
+    background-color: #2292F2 !important;
+    font-size: 17px;
+    border-color: #2292F2 !important;
+    color: white;
+    font-family: 'pourPara';
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+.section_contact_formulaire .container-fluid .col-md-8 .btn-primary:hover{
+    background-color: #044d8c !important;
+    border-color: #044d8c !important;
+}
+.section_contact_formulaire .container-fluid .alert-success{
+    font-size: 17px;
+    font-family: 'pourPara';
+    border-radius: 25px;
+}
+/*~##################RESPONSIVE DESIGN ####################*/
+/*--------------Pour les tablettes Paysage-------------------*/
+@media (min-width: 769px) and (max-width: 990px) {
+    /*pour la section header*/
+    .section_contact_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_contact.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 30%;
+    }
+    .section_contact_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 55px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+    /*pour ma section en apres le header*/
+    .section_contact_section1{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 100vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    /*pour ma section formulaire*/
+    .section_contact_formulaire .container-fluid .col-md-8 .btn-primary{
+        width: 200px !important;
+        height: 46px !important;
+        border-radius: 25px !important;
+        background-color: #2292F2 !important;
+        font-size: 17px;
+        border-color: #2292F2 !important;
+        color: white;
+        font-family: 'pourPara';
+        margin-top: 2%;
+        margin-bottom: 6% !important;
+    }
+}
+/*--------------Pour les tablettes Portait-------------------*/
+@media (min-width: 481px) and (max-width: 768px) {
+     /*pour la section header*/
+     .section_contact_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_contact.jpg") ;
+        width: 100%;
+        height: 100vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 40%;
+    }
+    .section_contact_header .col-md-10 h1{
+        font-family: 'pourTitre';
+        font-size: 50px;
+        word-spacing: 2px;
+    }
+      /*pour ma section en apres le header*/
+      .section_contact_section1{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 90vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_section1 .left{
+        margin-top: 25px;
+    }
+    .section_contact_section1 .rigth{
+        margin-top: 25px;
+        position: relative;
+        bottom: 140px;
+    }
+    .section_contact_section1 .left h1{
+        font-family: 'pourPara';
+        font-size: 25px;
+        color: #363535;
+    }
+    .section_contact_section1 .rigth h1{
+        font-family: 'pourPara';
+        font-size: 25px;
+        color: #363535;
+    }
+}
+/*--------------Pour les telephones Paysage-------------------*/
+@media (min-width: 321px) and (max-width: 480px) {
+    /*pour la section header*/
+    .section_contact_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_contact.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 25%;
+    }
+    .section_contact_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 28px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+      /*pour ma section en apres le header*/
+      .section_contact_section1{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 115vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_section1 .left{
+        margin-top: 25px;
+    }
+    .section_contact_section1 .rigth{
+        margin-top: 25px;
+        position: relative;
+        bottom: 140px;
+    }
+    .section_contact_section1 .left h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        color: #363535;
+        text-align: center;
+    }
+    .section_contact_section1 .rigth h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        color: #363535;
+    }
+    .section_contact_section1 .left p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .section_contact_section1 .rigth p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 15px;
+    }
+    /*pour la partie formulaire*/
+    .section_contact_formulaire .container-fluid h1{
+        font-size: 26px;
+        font-family: 'pourPara';
+        text-align: center !important;
+        margin-top: 4%;
+        margin-bottom: 3%;
+        color: #3F3D56;
+    }
+}
+/*--------------Pour les telephone  Portait-------------------*/
+@media (max-width: 320px) {
+     /*pour la section header*/
+     .section_contact_header{
+        background-image:  linear-gradient(to bottom, rgba(1, 1, 1, 0.598), rgba(0, 0, 0, 0.666)),url("../image_site/header_contact.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+        margin-top: 25%;
+    }
+    .section_contact_header .col-md-10 h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        letter-spacing: 0.0625em;
+        word-spacing: 2px;
+    }
+      /*pour ma section en apres le header*/
+      .section_contact_section1{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 135vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_contact_section1 .left{
+        margin-top: 25px;
+    }
+    .section_contact_section1 .rigth{
+        margin-top: 25px;
+        position: relative;
+        bottom: 140px;
+    }
+    .section_contact_section1 .left h1{
+        font-family: 'pourPara';
+        font-size: 20px;
+        color: #363535;
+        text-align: center;
+    }
+    .section_contact_section1 .rigth h1{
+        font-family: 'pourPara';
+        font-size: 20px;
+        color: #363535;
+    }
+    .section_contact_section1 .left p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .section_contact_section1 .rigth p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 15px;
+    }
+    /*pour la partie formulaire*/
+    .section_contact_formulaire .container-fluid h1{
+        font-size: 22px;
+        font-family: 'pourPara';
+        text-align: center !important;
+        margin-top: 4%;
+        margin-bottom: 3%;
+        color: #3F3D56;
+    }
+}
+@media (max-width: 262px){
+      /*pour ma section en apres le header*/
+      .section_contact_section1{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 180vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}

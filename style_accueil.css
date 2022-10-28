@@ -1,0 +1,1098 @@
+    @font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+        #l1{
+            color: #2292F2 !important;
+        }
+   .section_accueil_header{
+    background-image: url("../image_site/header_accueil.jpg") ;
+    width: 100%;
+    height: 100vh;
+    min-height: 450px;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+
+.section_accueil_header .col-md-10{
+    text-align: center;
+    color: white;
+    align-items: center;
+    margin-top: 12%;
+}
+.section_accueil_header .col-md-10 h1{
+    font-size: 40px;
+    word-spacing: 2px;
+    font-family: 'pourPara';
+}
+.section_accueil_header .col-md-10 p{
+    font-size:70px;
+    text-transform: capitalize;
+    font-family: 'pourTitre';
+}
+.section_accueil_header .col-md-10 ul li{
+    list-style-type: none;
+    display: inline;
+    margin: 12px;
+    font-family: 'pourPara';
+}
+.section_accueil_header .col-md-10 ul li .btn-primary{
+    border-radius: 50px !important;
+    height: 50px !important;
+    text-align: center;
+    background-color: #2292F2 !important;
+    border: 2px solid #2292F2 !important;
+    font-size: 18px !important;
+    width: 250px;
+    box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+}
+.section_accueil_header .col-md-10 ul li .btn-primary:hover{
+    background-color: white !important;
+    color: #2292F2;
+    border: 1px solid #fff;
+    border: 1px solid #fff !important;
+}
+.section_accueil_header .col-md-10 ul li .btn-secondary{
+    border-radius: 50px !important;
+    height: 50px !important;
+    text-align: center;
+    background-color: #03000003 !important;
+    border: 2px solid white !important;
+    font-size: 18px !important;
+    width: 250px;
+    box-shadow: 1px 1px 1px rgb(144, 142, 142, 0.278);
+    border: 1px solid #fff;
+}
+.section_accueil_header .col-md-10 ul li .btn-secondary:hover{
+    background-color: white !important;
+    color: #2292F2;
+    border: 1px solid #fff;
+}
+/*section section accueil 1*/
+.section_accueil_section1{
+    height: 75vh;
+    background-color: #eaefeb;
+}
+.section_accueil_section1 .col-md-7{
+    margin-top: 8%;
+}
+.section_accueil_section1 .col-md-7 h1{
+    font-family: 'pourMintitre';
+    font-size: 40px;
+    color: #363535;
+    margin-top: 10px;
+}
+.section_accueil_section1 .col-md-7 p{
+    font-family: 'pourPara';
+    font-size: 18px;
+    color: #363535;
+    margin-top: 25px;
+    text-align: justify;
+    margin-bottom: 28px;
+}
+.section_accueil_section1 .col-md-7 .btn-primary{
+    border-radius: 25px;
+    font-family: 'pourPara';
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #2292F2 !important;
+    border: 1px solid #2292F2 !important;
+    box-shadow: 3px 3px 3px rgb(144, 142, 142);
+    width: 350px;
+    height: 50px;
+}
+.section_accueil_section1 .col-md-7 .btn-primary:hover{
+    background-color: white !important;
+    color: #2292F2  !important;
+    box-shadow: 3px 3px 3px rgb(144, 142, 142);
+    transition: 0.5s;
+    border: 1px solid #fff !important;
+}
+
+/*section service*/
+.section_accueil_service{
+    color: #363535;
+  
+}
+.section_accueil_service h1{
+    margin-top: 75px;
+    font-family: 'pourMintitre';
+    text-align: center;
+    font-size: 34px;
+    letter-spacing: 4px;
+    color: #363535;
+    text-transform: uppercase;
+}
+.section_accueil_service p{
+    font-family: 'pourPara';
+    text-align: center;
+    font-size: 18px;
+    color: #363535;
+}
+.section_accueil_service .col-md-3{
+    border: 2px solid  #EFEFEF ;;
+    text-align: center;
+    border-radius: 18px;
+    margin-bottom: 70px;
+    background-color: #F5FBFB;
+    box-shadow: 3px 3px 3px rgba(203, 200, 200, 0.278) !important;
+}
+.section_accueil_service .col-md-3 img{
+    margin-top: 20px;
+}
+.section_accueil_service .col-md-3 h2{
+    font-family: 'pourMintitre';
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+}
+.section_accueil_service .col-md-3 p{
+    font-family: 'pourPara';
+    font-size: 17px;
+    line-height: 32px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.section_accueil_service .col-md-3 .btn-primary{
+    border-radius: 25px;
+    margin-bottom: 15px;
+    background-color: #2292F2 !important;
+    border: 1px solid #2292F2 !important;
+    width: 175px !important;
+    height: 45px !important;
+    font-family: 'pourPara';
+    font-size: 17px;
+    box-shadow: 3px 3px 3px rgb(144, 142, 142, 0.278) !important;
+}
+.section_accueil_service .col-md-3 .btn-primary:hover{
+    background-color: white !important;
+    color: #2292F2;
+    border: 1px solid #fff !important;
+    box-shadow: 6px 6px 6px rgba(39, 38, 38, 0.278) !important;
+}
+/*section devis*/
+
+/*section appell*/
+.section_accueil_appel{
+    background-image: url("../image_site/bg-choix.png") ;
+    width: 100%;
+    height: 60vh;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section_accueil_appel .container h1{
+    font-family: 'pourTitre';
+    color: white;
+    font-size: 47px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+.section_accueil_appel .container .col-md-3 p{
+    color: white;
+    font-family: 'pourPara';
+    font-size: 18px;
+    margin-top: 20px;
+}
+/*style projet*/
+.section_accueil_projet{
+    background-image: url("../image_site/BG-whitebac.png") ;
+    height: 100vh;
+    background-repeat: no-repeat no-repeat center;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Roboto',sans-serif;
+}
+.section_accueil_projet .container h1{
+    font-family: 'pourTitre';
+    text-transform: uppercase;
+    color: #363535;
+    text-align: center;
+    font-size: 38px;
+    margin-top: 8%;
+}
+.section_accueil_projet .container .p{
+    font-family: 'pourTitre';
+    color: #363535;
+    text-align: center;
+    font-size: 38px;
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+.section_accueil_projet .container .col-md-3 .card{
+    border-radius: 25px !important;
+}
+.section_accueil_projet .container .col-md-3 .card-body{
+    background-color: #212429;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 1px 1px 1px #292828;
+}
+.section_accueil_projet .container .col-md-3 .card-body p{
+    color: white;
+    font-family: 'PourMinTitre';
+    font-size: 18px;
+    text-align: left;
+}
+.section_accueil_projet .container .col-md-3 .card-body .icon{
+    text-align: right;
+    font-family: 'pourPara';
+    font-size: 14px;
+}
+.section_accueil_projet .container .col-md-12{
+    margin-left: 65px;
+}
+.section_accueil_projet .container .btn-primary{
+    background-color: #212429 !important;
+    border-color: #212429 !important;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'pourPara';
+    margin-top: 7%;
+    height: 48px !important;
+    width: 280px !important;
+    border-radius: 25px;
+}
+/*section testi*/
+.testimonials{
+    height: 100vh;
+    background-color: #eaefeb;
+}
+.testimonials .container h1{
+    font-family: 'pourPara';
+    font-size: 38px;
+    text-align: center;
+    color: #363535;
+    margin-top:55px;
+    text-transform: uppercase;
+}
+.shadow-effect {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+border:1px solid #ECECEC;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.02);
+}
+#customers-testimonials .shadow-effect p {
+    font-family: inherit;
+    font-size: 17px;
+    font-family: 'pourPara';
+    color: #363535;
+    line-height: 1.5;
+    margin: 0 0 17px 0;
+    font-weight: 300;
+}
+#customers-testimonials .shadow-effect h5{
+    color: #2292F2;
+    font-size: 16px;
+}
+.testimonial-name {
+    margin: -17px auto 0;
+    display: table;
+    width: auto;
+    font-family: 'pourPara';
+    font-size: 17px;
+    background: #3190E7;
+    padding: 9px 35px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 9px 18px rgba(0,0,0,0.12), 0 5px 7px rgba(0,0,0,0.05);
+}
+#customers-testimonials .item {
+    text-align: center;
+    padding: 50px;
+        margin-bottom:80px;
+    opacity: .2;
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#customers-testimonials .owl-item.active.center .item {
+    opacity: 1;
+    -webkit-transform: scale3d(1.0, 1.0, 1);
+    transform: scale3d(1.0, 1.0, 1);
+}
+.owl-carousel .owl-item img {
+    transform-style: preserve-3d;
+    max-width: 90px;
+    margin: 0 auto 17px;
+}
+#customers-testimonials.owl-carousel .owl-dots .owl-dot.active span,
+#customers-testimonials.owl-carousel .owl-dots .owl-dot:hover span {
+    background: #3190E7;
+    transform: translate3d(0px, -50%, 0px) scale(0.7);
+}
+#customers-testimonials.owl-carousel .owl-dots{
+display: inline-block;
+width: 100%;
+text-align: center;
+}
+#customers-testimonials.owl-carousel .owl-dots .owl-dot{
+display: inline-block;
+}
+#customers-testimonials.owl-carousel .owl-dots .owl-dot span {
+    background: #3190E7;
+    display: inline-block;
+    height: 20px;
+    margin: 0 2px 5px;
+    transform: translate3d(0px, -50%, 0px) scale(0.3);
+    transform-origin: 50% 50% 0;
+    transition: all 250ms ease-out 0s;
+    width: 20px;
+}
+/*section avis avis*/
+.section_accueil_avi{
+    background-color: #E9E9E9;
+    height: 400px;
+}
+.section_accueil_avi h1{
+    font-family: 'pourPara';
+    font-size: 38px;
+    margin-top: 40px;
+    text-align: center;
+}
+.section_accueil_avi p{
+    font-family: 'pourPara';
+    font-size: 28px;
+    margin-top: 6px;
+    text-align: center;
+}
+.section_accueil_avi .container .col-md-6 p{
+    font-size: 18px;
+}
+.section_accueil_avi .container p span{
+    color: #FFDC0F;
+}
+.section_accueil_avi .container .col-md-6{
+    margin-top: 3%;
+}
+.section_accueil_avi .container .col-md-6 ul li{
+    display: inline;
+    list-style-type: none;
+    margin: 22px 18px 11px;
+    margin-bottom: 12px;
+}
+.section_accueil_avi .container .col-md-6 ul li .btnnone{
+    border: 2px solid #2292F2 !important;
+    width: 210px !important;
+    height: 46px !important;
+    font-size: 18px;
+    font-family: 'pourPara';
+    text-align: center;
+    color: #2292F2 !important;
+}
+.section_accueil_avi .container .col-md-6 ul li .btn-primary{
+    background-color: #2292F2 !important;
+    border: 2px solid #2292F2 !important;
+    width: 210px !important;
+    height: 46px !important;
+    font-size: 18px;
+    font-family: 'pourPara';
+    text-align: center;
+    color: white !important;
+}
+/*--------------Pour les tablettes Paysage-------------------*/
+@media (min-width: 779px) and (max-width: 990px){
+    /*style pour le header*/
+    .section_accueil_header{
+        background-image: url("../image_site/header_accueil.jpg") ;
+        width: 100%;
+        height: 120vh;
+        min-height: 450px;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed; 
+    }
+    .section_accueil_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+    }
+    .section_accueil_header .col-md-10 h1{
+        font-size: 40px;
+        word-spacing: 2px;
+        font-family: 'pourPara';
+    }
+    .section_accueil_header .col-md-10 p{
+        font-size:60px;
+        text-transform: capitalize;
+        font-family: 'pourTitre';
+    }
+    .section_accueil_header .col-md-10 ul li{
+        list-style-type: none;
+        display: block;
+        margin-bottom: 12px;
+        font-family: 'pourPara';
+    }
+    .section_accueil_header .col-md-10 ul li .btn-primary{
+        border-radius: 50px !important;
+        height: 50px !important;
+        text-align: center;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        font-size: 18px !important;
+        width: 250px;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+    }
+    /*spour la partie apres header*/
+    .section_accueil_section1{
+        height: 90vh;
+        background-color: #eaefeb;
+    }
+    .section_accueil_section1 .col-md-7 h1{
+        font-family: 'pourMintitre';
+        font-size: 36px;
+        color: #363535;
+        margin-top: 10px;
+    }
+    .section_accueil_section1 .col-md-7 p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 25px;
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    /*pour la partie service*/
+    .section_accueil_service .col-md-3 .btn-primary{
+        border-radius: 25px;
+        margin-bottom: 15px;
+        background-color: #2292F2 !important;
+        border: 1px solid #2292F2 !important;
+        font-family: 'pourPara';
+        font-size: 17px;
+        width: auto !important;
+        height: auto !important;
+        box-shadow: 3px 3px 3px rgb(144, 142, 142, 0.278) !important;
+    }
+    /*pour la parti produit*/
+    .section_accueil_service h1{
+        margin-top: 45px;
+        font-family: 'pourMintitre';
+        text-align: center;
+        font-size: 34px;
+        letter-spacing: 4px;
+        color: #363535;
+        text-transform: uppercase;
+    }
+    /*pour la partie google*/
+    .section_accueil_avi .container .col-md-6 ul li .btn-primary{
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        width: 210px !important;
+        height: 46px !important;
+        font-size: 18px;
+        font-family: 'pourPara';
+        text-align: center;
+        color: white !important;
+        margin-bottom: 12px;
+    }
+    .section_accueil_avi .container .col-md-6 ul li{
+        display: block;
+        list-style-type: none;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+}
+@media (min-width: 481px) and (max-width: 778px){
+        /*style pour le header*/
+        .section_accueil_header{
+            background-image: url("../image_site/header_accueil.jpg") ;
+            width: 100%;
+            height: 110vh;
+            min-height: 450px;
+            background-repeat: no-repeat no-repeat center;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed; 
+        }
+        .section_accueil_header .col-md-10{
+            text-align: center;
+            color: white;
+            align-items: center;
+        }
+        .section_accueil_header .col-md-10 h1{
+            font-size: 32px;
+            word-spacing: 2px;
+            font-family: 'pourPara';
+        }
+        .section_accueil_header .col-md-10 p{
+            font-size:40px;
+            text-transform: capitalize;
+            font-family: 'pourTitre';
+        }
+        .section_accueil_header .col-md-10 ul li{
+            list-style-type: none;
+            display: block;
+            margin-bottom: 12px;
+            font-family: 'pourPara';
+        }
+        .section_accueil_header .col-md-10 ul li .btn-primary{
+            border-radius: 50px !important;
+            height: 50px !important;
+            text-align: center;
+            background-color: #2292F2 !important;
+            border: 2px solid #2292F2 !important;
+            font-size: 18px !important;
+            width: 250px;
+            box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+        }
+          /*spour la partie apres header*/
+    .section_accueil_section1{
+        height: 140vh;
+        background-color: #eaefeb;
+        text-align: center;
+    }
+    .section_accueil_section1 .col-md-7 h1{
+        font-family: 'pourMintitre';
+        font-size: 30px;
+        color: #363535;
+        margin-top: 10px;
+    }
+    .section_accueil_section1 .col-md-7 p{
+        font-family: 'pourPara';
+        font-size: 18px;
+        color: #363535;
+        margin-top: 25px;
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    /*pour la partie service*/
+    .section_accueil_service h1{
+        margin-top: 75px;
+        font-family: 'pourMintitre';
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 4px;
+        color: #363535;
+        text-transform: uppercase;
+    }
+    /*pour la section apres service*/
+    .section_accueil_appel{
+        background-image: url("../image_site/bg-choix.png") ;
+        width: 100%;
+        height: 115vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_appel .container h1{
+        font-family: 'pourTitre';
+        color: white;
+        font-size: 30px;
+        margin-top: 100px;
+        margin-bottom: 70px;
+    }
+    /*pour la partie projet*/
+    .section_accueil_projet{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 170vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_projet .container h1{
+        font-family: 'pourTitre';
+        text-transform: uppercase;
+        color: #363535;
+        text-align: center;
+        font-size: 26px;
+        margin-top: 8%;
+    }
+    .section_accueil_projet .container .p{
+        font-family: 'pourTitre';
+        color: #363535;
+        text-align: center;
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 30px;
+    }
+    .section_accueil_projet .container .col-md-3 .card{
+        border-radius: 25px !important;
+        margin-bottom: 20px;
+    }
+    .section_accueil_projet .container .btn-primary{
+        background-color: #212429 !important;
+        border-color: #212429 !important;
+        text-align: center;
+        font-size: 18px;
+        font-family: 'pourPara';
+        margin-top: 7%;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 25px;
+    }
+    .section_accueil_projet .container .col-md-12{
+        margin-left: 0px;
+    }
+    /*pour la partie test */
+    .testimonials .container h1{
+        font-family: 'pourPara';
+        font-size: 28px;
+        text-align: center;
+        color: #363535;
+        margin-top:55px;
+        text-transform: uppercase;
+    }
+    /*pour la partie avis*/
+    .section_accueil_avi .container .col-md-6 ul li{
+        display: block;
+        list-style-type: none;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .section_accueil_avi{
+        background-color: #E9E9E9;
+        height: 500px;
+    }
+    .section_accueil_avi h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        margin-top: 40px;
+        text-align: center;
+    }
+}
+@media (min-width: 321px) and (max-width: 480px){
+     /*style pour le header*/
+     .section_accueil_header{
+        background-image: url("../image_site/header_accueil.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed; 
+    }
+    .section_accueil_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+    }
+    .section_accueil_header .col-md-10 h1{
+        font-size: 25px;
+        font-family: 'pourPara';
+        text-align: center;
+    }
+    .section_accueil_header .col-md-10 p{
+        font-size:26px;
+        text-transform: capitalize;
+        font-family: 'pourTitre';
+        text-align: center;
+    }
+    .section_accueil_header .col-md-10 ul li{
+        list-style-type: none;
+        display: block;
+        margin-bottom: 12px;
+        font-family: 'pourPara';
+    }
+    .section_accueil_header .col-md-10 ul li .btn-primary{
+        border-radius: 50px !important;
+        height: 50px !important;
+        text-align: center;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        font-size: 18px !important;
+        width: auto !important;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+    }
+    .section_accueil_header .col-md-10 ul li .btn-secondary{
+        border-radius: 50px !important;
+        height: 50px !important;
+        text-align: center;
+        background-color: #03000003 !important;
+        border: 2px solid white !important;
+        font-size: 18px !important;
+        width: auto !important;
+        box-shadow: 1px 1px 1px rgb(144, 142, 142, 0.278);
+        border: 1px solid #fff;
+    }
+        /*spour la partie apres header*/
+        .section_accueil_section1{
+            height: 145vh;
+            background-color: #eaefeb;
+            text-align: center;
+        }
+        .section_accueil_section1 .col-md-7 h1{
+            font-family: 'pourMintitre';
+            font-size: 22px;
+            color: #363535;
+            margin-top: 10px;
+        }
+        .section_accueil_section1 .col-md-7 p{
+            font-family: 'pourPara';
+            font-size: 18px;
+            color: #363535;
+            margin-top: 25px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .section_accueil_section1 .col-md-7{
+            margin-top: 0px !important;
+        }
+        .section_accueil_section1 .col-md-7 .btn-primary{
+            border-radius: 25px;
+            font-family: 'pourPara';
+            font-size: 18px;
+            text-transform: uppercase;
+            text-align: center;
+            background-color: #2292F2 !important;
+            border: 1px solid #2292F2 !important;
+            box-shadow: 3px 3px 3px rgb(144, 142, 142);
+            height: auto !important;
+            width: auto !important;
+        }
+          /*pour la partie service*/
+    .section_accueil_service h1{
+        margin-top: 75px;
+        font-family: 'pourMintitre';
+        text-align: center;
+        font-size: 22px;
+        letter-spacing: 4px;
+        color: #363535;
+        text-transform: uppercase;
+    }
+          /*pour la section apres service*/
+    .section_accueil_appel{
+        background-image: url("../image_site/bg-choix.png") ;
+        width: 100%;
+        height: 115vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_appel .container h1{
+        font-family: 'pourTitre';
+        color: white;
+        font-size: 22px;
+        margin-top: 100px;
+        margin-bottom: 70px;
+    }
+     /*pour la partie projet*/
+     .section_accueil_projet{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 170vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_projet .container h1{
+        font-family: 'pourTitre';
+        text-transform: uppercase;
+        color: #363535;
+        text-align: center;
+        font-size: 22px;
+        margin-top: 8%;
+    }
+    .section_accueil_projet .container .p{
+        font-family: 'pourTitre';
+        color: #363535;
+        text-align: center;
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 30px;
+    }
+    .section_accueil_projet .container .col-md-3 .card{
+        border-radius: 25px !important;
+        margin-bottom: 20px;
+    }
+    .section_accueil_projet .container .btn-primary{
+        background-color: #212429 !important;
+        border-color: #212429 !important;
+        text-align: center;
+        font-size: 18px;
+        font-family: 'pourPara';
+        margin-top: 7%;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 25px;
+    }
+    .section_accueil_projet .container .col-md-12{
+        margin-left: 0px;
+    }
+    /*pour la partie test*/
+    .testimonials{
+        height: 118vh;
+        background-color: #eaefeb;
+    }
+    .testimonials .container h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        text-align: center;
+        color: #363535;
+        margin-top:55px;
+        text-transform: uppercase;
+    }
+     /*pour la partie avis*/
+     .section_accueil_avi .container .col-md-6 ul li{
+        display: block;
+        list-style-type: none;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .section_accueil_avi{
+        background-color: #E9E9E9;
+        height: 480px;
+    }
+    .section_accueil_avi h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        margin-top: 40px;
+        text-align: center;
+    }
+}
+@media (max-width: 320px){
+       /*style pour le header*/
+       .section_accueil_header{
+        background-image: url("../image_site/header_accueil.jpg") ;
+        width: 100%;
+        height: auto !important;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed; 
+    }
+    .section_accueil_header .col-md-10{
+        text-align: center;
+        color: white;
+        align-items: center;
+    }
+    .section_accueil_header .col-md-10 h1{
+        font-size: 25px;
+        font-family: 'pourPara';
+        text-align: center;
+    }
+    .section_accueil_header .col-md-10 p{
+        font-size:26px;
+        text-transform: capitalize;
+        font-family: 'pourTitre';
+        text-align: center;
+    }
+    .section_accueil_header .col-md-10 ul li{
+        list-style-type: none;
+        display: block;
+        margin-bottom: 12px;
+        font-family: 'pourPara';
+    }
+    .section_accueil_header .col-md-10 ul li .btn-primary{
+        border-radius: 50px !important;
+        height: 50px !important;
+        text-align: center;
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        font-size: 18px !important;
+        width: auto !important;
+        height: auto !important;
+        box-shadow: 3px 3px 3px rgba(144, 142, 142, 0.278);
+    }
+    .section_accueil_header .col-md-10 ul li .btn-secondary{
+        border-radius: 50px !important;
+        height: 50px !important;
+        text-align: center;
+        background-color: #03000003 !important;
+        border: 2px solid white !important;
+        font-size: 18px !important;
+        width: auto !important;
+        height: auto !important;
+        box-shadow: 1px 1px 1px rgb(144, 142, 142, 0.278);
+        border: 1px solid #fff;
+    }
+        /*spour la partie apres header*/
+        .section_accueil_section1{
+            height: 180vh;
+            background-color: #eaefeb;
+            text-align: center;
+        }
+        .section_accueil_section1 .col-md-7 h1{
+            font-family: 'pourMintitre';
+            font-size: 22px;
+            color: #363535;
+            margin-top: 10px;
+        }
+        .section_accueil_section1 .col-md-7 p{
+            font-family: 'pourPara';
+            font-size: 18px;
+            color: #363535;
+            margin-top: 25px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .section_accueil_section1 .col-md-7{
+            margin-top: 0px !important;
+        }
+        .section_accueil_section1 .col-md-7 .btn-primary{
+            border-radius: 25px;
+            font-family: 'pourPara';
+            font-size: 18px;
+            text-transform: uppercase;
+            text-align: center;
+            background-color: #2292F2 !important;
+            border: 1px solid #2292F2 !important;
+            box-shadow: 3px 3px 3px rgb(144, 142, 142);
+            height: auto !important;
+            width: auto !important;
+        }
+          /*pour la partie service*/
+    .section_accueil_service h1{
+        margin-top: 75px;
+        font-family: 'pourMintitre';
+        text-align: center;
+        font-size: 22px;
+        letter-spacing: 4px;
+        color: #363535;
+        text-transform: uppercase;
+    }
+          /*pour la section apres service*/
+    .section_accueil_appel{
+        background-image: url("../image_site/bg-choix.png") ;
+        width: 100%;
+        height: 113vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_appel .container h1{
+        font-family: 'pourTitre';
+        color: white;
+        font-size: 22px;
+        margin-top: 100px;
+        margin-bottom: 70px;
+    }
+     /*pour la partie projet*/
+     .section_accueil_projet{
+        background-image: url("../image_site/BG-whitebac.png") ;
+        height: 180vh;
+        background-repeat: no-repeat no-repeat center;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .section_accueil_projet .container h1{
+        font-family: 'pourTitre';
+        text-transform: uppercase;
+        color: #363535;
+        text-align: center;
+        font-size: 22px;
+        margin-top: 8%;
+    }
+    .section_accueil_projet .container .p{
+        font-family: 'pourTitre';
+        color: #363535;
+        text-align: center;
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 30px;
+    }
+    .section_accueil_projet .container .col-md-3 .card{
+        border-radius: 25px !important;
+        margin-bottom: 20px;
+    }
+    .section_accueil_projet .container .btn-primary{
+        background-color: #212429 !important;
+        border-color: #212429 !important;
+        text-align: center;
+        font-size: 18px;
+        font-family: 'pourPara';
+        margin-top: 7%;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 25px;
+    }
+    .section_accueil_projet .container .col-md-12{
+        margin-left: 0px;
+    }
+    /*pour la partie test*/
+    .testimonials{
+        height: 200vh;
+        background-color: #eaefeb;
+    }
+    .testimonials .container h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        text-align: center;
+        color: #363535;
+        margin-top:55px;
+        text-transform: uppercase;
+    }
+    .shadow-effect {
+        background: none !important;
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        border:1px solid #ECECEC;
+        box-shadow: 0 19px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.02);
+        
+    }
+     /*pour la partie avis*/
+     .section_accueil_avi .container .col-md-6 ul li{
+        display: block;
+        list-style-type: none;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .section_accueil_avi{
+        background-color: #E9E9E9;
+        height: 500px;
+    }
+    .section_accueil_avi h1{
+        font-family: 'pourPara';
+        font-size: 22px;
+        margin-top: 40px;
+        text-align: center;
+    }
+    .section_accueil_avi .container .col-md-6 ul li .btnnone{
+        border: 2px solid #2292F2 !important;
+        width: auto !important;
+        height: auto !important;
+        font-size: 18px;
+        font-family: 'pourPara';
+        text-align: center;
+        color: #2292F2 !important;
+    }
+    .section_accueil_avi .container .col-md-6 ul li .btn-primary{
+        background-color: #2292F2 !important;
+        border: 2px solid #2292F2 !important;
+        width: auto !important;
+        height: auto !important;
+        font-size: 18px;
+        font-family: 'pourPara';
+        text-align: center;
+        color: white !important;
+    }
+}
+@media (max-width: 219px){
+/*spour la partie apres header*/
+.section_accueil_section1{
+    height: 230vh;
+    background-color: #eaefeb;
+    text-align: center;
+}
+.section_accueil_avi{
+    background-color: #E9E9E9;
+    height: 650px;
+}
+}
