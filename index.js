@@ -3,146 +3,109 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.needsParens = needsParens;
+exports.needsWhitespace = needsWhitespace;
+exports.needsWhitespaceAfter = needsWhitespaceAfter;
+exports.needsWhitespaceBefore = needsWhitespaceBefore;
 
-var _templateLiterals = require("./template-literals");
+var whitespace = require("./whitespace");
 
-Object.keys(_templateLiterals).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _templateLiterals[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _templateLiterals[key];
+var parens = require("./parentheses");
+
+var _t = require("@babel/types");
+
+const {
+  FLIPPED_ALIAS_KEYS,
+  isCallExpression,
+  isExpressionStatement,
+  isMemberExpression,
+  isNewExpression
+} = _t;
+
+function expandAliases(obj) {
+  const newObj = {};
+
+  function add(type, func) {
+    const fn = newObj[type];
+    newObj[type] = fn ? function (node, parent, stack) {
+      const result = fn(node, parent, stack);
+      return result == null ? func(node, parent, stack) : result;
+    } : func;
+  }
+
+  for (const type of Object.keys(obj)) {
+    const aliases = FLIPPED_ALIAS_KEYS[type];
+
+    if (aliases) {
+      for (const alias of aliases) {
+        add(alias, obj[type]);
+      }
+    } else {
+      add(type, obj[type]);
     }
-  });
-});
+  }
 
-var _expressions = require("./expressions");
+  return newObj;
+}
 
-Object.keys(_expressions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _expressions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _expressions[key];
+const expandedParens = expandAliases(parens);
+const expandedWhitespaceNodes = expandAliases(whitespace.nodes);
+const expandedWhitespaceList = expandAliases(whitespace.list);
+
+function find(obj, node, parent, printStack) {
+  const fn = obj[node.type];
+  return fn ? fn(node, parent, printStack) : null;
+}
+
+function isOrHasCallExpression(node) {
+  if (isCallExpression(node)) {
+    return true;
+  }
+
+  return isMemberExpression(node) && isOrHasCallExpression(node.object);
+}
+
+function needsWhitespace(node, parent, type) {
+  if (!node) return 0;
+
+  if (isExpressionStatement(node)) {
+    node = node.expression;
+  }
+
+  let linesInfo = find(expandedWhitespaceNodes, node, parent);
+
+  if (!linesInfo) {
+    const items = find(expandedWhitespaceList, node, parent);
+
+    if (items) {
+      for (let i = 0; i < items.length; i++) {
+        linesInfo = needsWhitespace(items[i], node, type);
+        if (linesInfo) break;
+      }
     }
-  });
-});
+  }
 
-var _statements = require("./statements");
+  if (typeof linesInfo === "object" && linesInfo !== null) {
+    return linesInfo[type] || 0;
+  }
 
-Object.keys(_statements).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _statements[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _statements[key];
-    }
-  });
-});
+  return 0;
+}
 
-var _classes = require("./classes");
+function needsWhitespaceBefore(node, parent) {
+  return needsWhitespace(node, parent, "before");
+}
 
-Object.keys(_classes).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _classes[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _classes[key];
-    }
-  });
-});
+function needsWhitespaceAfter(node, parent) {
+  return needsWhitespace(node, parent, "after");
+}
 
-var _methods = require("./methods");
+function needsParens(node, parent, printStack) {
+  if (!parent) return false;
 
-Object.keys(_methods).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _methods[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _methods[key];
-    }
-  });
-});
+  if (isNewExpression(parent) && parent.callee === node) {
+    if (isOrHasCallExpression(node)) return true;
+  }
 
-var _modules = require("./modules");
-
-Object.keys(_modules).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _modules[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _modules[key];
-    }
-  });
-});
-
-var _types = require("./types");
-
-Object.keys(_types).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _types[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _types[key];
-    }
-  });
-});
-
-var _flow = require("./flow");
-
-Object.keys(_flow).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _flow[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _flow[key];
-    }
-  });
-});
-
-var _base = require("./base");
-
-Object.keys(_base).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _base[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _base[key];
-    }
-  });
-});
-
-var _jsx = require("./jsx");
-
-Object.keys(_jsx).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _jsx[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _jsx[key];
-    }
-  });
-});
-
-var _typescript = require("./typescript");
-
-Object.keys(_typescript).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _typescript[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _typescript[key];
-    }
-  });
-});
+  return find(expandedParens, node, parent, printStack);
+}
