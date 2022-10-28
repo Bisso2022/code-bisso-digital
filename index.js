@@ -3,67 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "ROOT_CONFIG_FILENAMES", {
+exports.createConfigItem = createConfigItem;
+exports.createConfigItemSync = exports.createConfigItemAsync = void 0;
+Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function () {
-    return _configuration.ROOT_CONFIG_FILENAMES;
+    return _full.default;
   }
 });
-Object.defineProperty(exports, "findConfigUpwards", {
-  enumerable: true,
-  get: function () {
-    return _configuration.findConfigUpwards;
-  }
-});
-Object.defineProperty(exports, "findPackageData", {
-  enumerable: true,
-  get: function () {
-    return _package.findPackageData;
-  }
-});
-Object.defineProperty(exports, "findRelativeConfig", {
-  enumerable: true,
-  get: function () {
-    return _configuration.findRelativeConfig;
-  }
-});
-Object.defineProperty(exports, "findRootConfig", {
-  enumerable: true,
-  get: function () {
-    return _configuration.findRootConfig;
-  }
-});
-Object.defineProperty(exports, "loadConfig", {
-  enumerable: true,
-  get: function () {
-    return _configuration.loadConfig;
-  }
-});
-Object.defineProperty(exports, "loadPlugin", {
-  enumerable: true,
-  get: function () {
-    return plugins.loadPlugin;
-  }
-});
-Object.defineProperty(exports, "loadPreset", {
-  enumerable: true,
-  get: function () {
-    return plugins.loadPreset;
-  }
-});
-exports.resolvePreset = exports.resolvePlugin = void 0;
-Object.defineProperty(exports, "resolveShowConfigPath", {
-  enumerable: true,
-  get: function () {
-    return _configuration.resolveShowConfigPath;
-  }
-});
-
-var _package = require("./package");
-
-var _configuration = require("./configuration");
-
-var plugins = require("./plugins");
+exports.loadPartialConfigSync = exports.loadPartialConfigAsync = exports.loadPartialConfig = exports.loadOptionsSync = exports.loadOptionsAsync = exports.loadOptions = void 0;
 
 function _gensync() {
   const data = require("gensync");
@@ -75,12 +23,53 @@ function _gensync() {
   return data;
 }
 
-({});
+var _full = require("./full");
 
-const resolvePlugin = _gensync()(plugins.resolvePlugin).sync;
+var _partial = require("./partial");
 
-exports.resolvePlugin = resolvePlugin;
+var _item = require("./item");
 
-const resolvePreset = _gensync()(plugins.resolvePreset).sync;
+const loadOptionsRunner = _gensync()(function* (opts) {
+  var _config$options;
 
-exports.resolvePreset = resolvePreset;
+  const config = yield* (0, _full.default)(opts);
+  return (_config$options = config == null ? void 0 : config.options) != null ? _config$options : null;
+});
+
+const createConfigItemRunner = _gensync()(_item.createConfigItem);
+
+const maybeErrback = runner => (opts, callback) => {
+  if (callback === undefined && typeof opts === "function") {
+    callback = opts;
+    opts = undefined;
+  }
+
+  return callback ? runner.errback(opts, callback) : runner.sync(opts);
+};
+
+const loadPartialConfig = maybeErrback(_partial.loadPartialConfig);
+exports.loadPartialConfig = loadPartialConfig;
+const loadPartialConfigSync = _partial.loadPartialConfig.sync;
+exports.loadPartialConfigSync = loadPartialConfigSync;
+const loadPartialConfigAsync = _partial.loadPartialConfig.async;
+exports.loadPartialConfigAsync = loadPartialConfigAsync;
+const loadOptions = maybeErrback(loadOptionsRunner);
+exports.loadOptions = loadOptions;
+const loadOptionsSync = loadOptionsRunner.sync;
+exports.loadOptionsSync = loadOptionsSync;
+const loadOptionsAsync = loadOptionsRunner.async;
+exports.loadOptionsAsync = loadOptionsAsync;
+const createConfigItemSync = createConfigItemRunner.sync;
+exports.createConfigItemSync = createConfigItemSync;
+const createConfigItemAsync = createConfigItemRunner.async;
+exports.createConfigItemAsync = createConfigItemAsync;
+
+function createConfigItem(target, options, callback) {
+  if (callback !== undefined) {
+    return createConfigItemRunner.errback(target, options, callback);
+  } else if (typeof options === "function") {
+    return createConfigItemRunner.errback(target, undefined, callback);
+  } else {
+    return createConfigItemRunner.sync(target, options);
+  }
+}
