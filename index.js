@@ -3,93 +3,125 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = parser;
+exports.run = run;
 
-function _parser() {
-  const data = require("@babel/parser");
+function _traverse() {
+  const data = require("@babel/traverse");
 
-  _parser = function () {
+  _traverse = function () {
     return data;
   };
 
   return data;
 }
 
-function _codeFrame() {
-  const data = require("@babel/code-frame");
+var _pluginPass = require("./plugin-pass");
 
-  _codeFrame = function () {
-    return data;
-  };
+var _blockHoistPlugin = require("./block-hoist-plugin");
 
-  return data;
-}
+var _normalizeOpts = require("./normalize-opts");
 
-var _missingPluginHelper = require("./util/missing-plugin-helper");
+var _normalizeFile = require("./normalize-file");
 
-function* parser(pluginPasses, {
-  parserOpts,
-  highlightCode = true,
-  filename = "unknown"
-}, code) {
+var _generate = require("./file/generate");
+
+var _deepArray = require("../config/helpers/deep-array");
+
+function* run(config, code, ast) {
+  const file = yield* (0, _normalizeFile.default)(config.passes, (0, _normalizeOpts.default)(config), code, ast);
+  const opts = file.opts;
+
   try {
-    const results = [];
+    yield* transformFile(file, config.passes);
+  } catch (e) {
+    var _opts$filename;
 
-    for (const plugins of pluginPasses) {
-      for (const plugin of plugins) {
-        const {
-          parserOverride
-        } = plugin;
+    e.message = `${(_opts$filename = opts.filename) != null ? _opts$filename : "unknown"}: ${e.message}`;
 
-        if (parserOverride) {
-          const ast = parserOverride(code, parserOpts, _parser().parse);
-          if (ast !== undefined) results.push(ast);
-        }
-      }
+    if (!e.code) {
+      e.code = "BABEL_TRANSFORM_ERROR";
     }
 
-    if (results.length === 0) {
-      return (0, _parser().parse)(code, parserOpts);
-    } else if (results.length === 1) {
-      yield* [];
-
-      if (typeof results[0].then === "function") {
-        throw new Error(`You appear to be using an async parser plugin, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
-      }
-
-      return results[0];
-    }
-
-    throw new Error("More than one plugin attempted to override parsing.");
-  } catch (err) {
-    if (err.code === "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED") {
-      err.message += "\nConsider renaming the file to '.mjs', or setting sourceType:module " + "or sourceType:unambiguous in your Babel config for this file.";
-    }
-
-    const {
-      loc,
-      missingPlugin
-    } = err;
-
-    if (loc) {
-      const codeFrame = (0, _codeFrame().codeFrameColumns)(code, {
-        start: {
-          line: loc.line,
-          column: loc.column + 1
-        }
-      }, {
-        highlightCode
-      });
-
-      if (missingPlugin) {
-        err.message = `${filename}: ` + (0, _missingPluginHelper.default)(missingPlugin[0], loc, codeFrame);
-      } else {
-        err.message = `${filename}: ${err.message}\n\n` + codeFrame;
-      }
-
-      err.code = "BABEL_PARSE_ERROR";
-    }
-
-    throw err;
+    throw e;
   }
+
+  let outputCode, outputMap;
+
+  try {
+    if (opts.code !== false) {
+      ({
+        outputCode,
+        outputMap
+      } = (0, _generate.default)(config.passes, file));
+    }
+  } catch (e) {
+    var _opts$filename2;
+
+    e.message = `${(_opts$filename2 = opts.filename) != null ? _opts$filename2 : "unknown"}: ${e.message}`;
+
+    if (!e.code) {
+      e.code = "BABEL_GENERATE_ERROR";
+    }
+
+    throw e;
+  }
+
+  return {
+    metadata: file.metadata,
+    options: opts,
+    ast: opts.ast === true ? file.ast : null,
+    code: outputCode === undefined ? null : outputCode,
+    map: outputMap === undefined ? null : outputMap,
+    sourceType: file.ast.program.sourceType,
+    externalDependencies: (0, _deepArray.flattenToSet)(config.externalDependencies)
+  };
+}
+
+function* transformFile(file, pluginPasses) {
+  for (const pluginPairs of pluginPasses) {
+    const passPairs = [];
+    const passes = [];
+    const visitors = [];
+
+    for (const plugin of pluginPairs.concat([(0, _blockHoistPlugin.default)()])) {
+      const pass = new _pluginPass.default(file, plugin.key, plugin.options);
+      passPairs.push([plugin, pass]);
+      passes.push(pass);
+      visitors.push(plugin.visitor);
+    }
+
+    for (const [plugin, pass] of passPairs) {
+      const fn = plugin.pre;
+
+      if (fn) {
+        const result = fn.call(pass, file);
+        yield* [];
+
+        if (isThenable(result)) {
+          throw new Error(`You appear to be using an plugin with an async .pre, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
+        }
+      }
+    }
+
+    const visitor = _traverse().default.visitors.merge(visitors, passes, file.opts.wrapPluginVisitorMethod);
+
+    (0, _traverse().default)(file.ast, visitor, file.scope);
+
+    for (const [plugin, pass] of passPairs) {
+      const fn = plugin.post;
+
+      if (fn) {
+        const result = fn.call(pass, file);
+        yield* [];
+
+        if (isThenable(result)) {
+          throw new Error(`You appear to be using an plugin with an async .post, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
+        }
+      }
+    }
+  }
+}
+
+function isThenable(val) {
+  return !!val && (typeof val === "object" || typeof val === "function") && !!val.then && typeof val.then === "function";
 }
