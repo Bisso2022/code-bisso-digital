@@ -3,253 +3,223 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "TargetNames", {
+Object.defineProperty(exports, "FEATURES", {
   enumerable: true,
   get: function () {
-    return _options.TargetNames;
+    return _features.FEATURES;
   }
 });
-exports.default = getTargets;
-Object.defineProperty(exports, "filterItems", {
+exports.createClassFeaturePlugin = createClassFeaturePlugin;
+Object.defineProperty(exports, "enableFeature", {
   enumerable: true,
   get: function () {
-    return _filterItems.default;
+    return _features.enableFeature;
   }
 });
-Object.defineProperty(exports, "getInclusionReasons", {
+Object.defineProperty(exports, "injectInitialization", {
   enumerable: true,
   get: function () {
-    return _debug.getInclusionReasons;
-  }
-});
-exports.isBrowsersQueryValid = isBrowsersQueryValid;
-Object.defineProperty(exports, "isRequired", {
-  enumerable: true,
-  get: function () {
-    return _filterItems.isRequired;
-  }
-});
-Object.defineProperty(exports, "prettifyTargets", {
-  enumerable: true,
-  get: function () {
-    return _pretty.prettifyTargets;
-  }
-});
-Object.defineProperty(exports, "unreleasedLabels", {
-  enumerable: true,
-  get: function () {
-    return _targets.unreleasedLabels;
+    return _misc.injectInitialization;
   }
 });
 
-var _browserslist = require("browserslist");
+var _core = require("@babel/core");
 
-var _helperValidatorOption = require("@babel/helper-validator-option");
+var _helperFunctionName = require("@babel/helper-function-name");
 
-var _nativeModules = require("@babel/compat-data/native-modules");
+var _helperSplitExportDeclaration = require("@babel/helper-split-export-declaration");
 
-var _utils = require("./utils");
+var _fields = require("./fields");
 
-var _targets = require("./targets");
+var _decorators = require("./decorators");
 
-var _options = require("./options");
+var _misc = require("./misc");
 
-var _pretty = require("./pretty");
+var _features = require("./features");
 
-var _debug = require("./debug");
+var _typescript = require("./typescript");
 
-var _filterItems = require("./filter-items");
+const version = "7.17.9".split(".").reduce((v, x) => v * 1e5 + +x, 0);
+const versionKey = "@babel/plugin-class-features/version";
 
-const ESM_SUPPORT = _nativeModules["es6.module"];
-const v = new _helperValidatorOption.OptionValidator("@babel/helper-compilation-targets");
-
-function validateTargetNames(targets) {
-  const validTargets = Object.keys(_options.TargetNames);
-
-  for (const target of Object.keys(targets)) {
-    if (!(target in _options.TargetNames)) {
-      throw new Error(v.formatMessage(`'${target}' is not a valid target
-- Did you mean '${(0, _helperValidatorOption.findSuggestion)(target, validTargets)}'?`));
-    }
-  }
-
-  return targets;
-}
-
-function isBrowsersQueryValid(browsers) {
-  return typeof browsers === "string" || Array.isArray(browsers) && browsers.every(b => typeof b === "string");
-}
-
-function validateBrowsers(browsers) {
-  v.invariant(browsers === undefined || isBrowsersQueryValid(browsers), `'${String(browsers)}' is not a valid browserslist query`);
-  return browsers;
-}
-
-function getLowestVersions(browsers) {
-  return browsers.reduce((all, browser) => {
-    const [browserName, browserVersion] = browser.split(" ");
-    const normalizedBrowserName = _targets.browserNameMap[browserName];
-
-    if (!normalizedBrowserName) {
-      return all;
-    }
-
-    try {
-      const splitVersion = browserVersion.split("-")[0].toLowerCase();
-      const isSplitUnreleased = (0, _utils.isUnreleasedVersion)(splitVersion, browserName);
-
-      if (!all[normalizedBrowserName]) {
-        all[normalizedBrowserName] = isSplitUnreleased ? splitVersion : (0, _utils.semverify)(splitVersion);
-        return all;
-      }
-
-      const version = all[normalizedBrowserName];
-      const isUnreleased = (0, _utils.isUnreleasedVersion)(version, browserName);
-
-      if (isUnreleased && isSplitUnreleased) {
-        all[normalizedBrowserName] = (0, _utils.getLowestUnreleased)(version, splitVersion, browserName);
-      } else if (isUnreleased) {
-        all[normalizedBrowserName] = (0, _utils.semverify)(splitVersion);
-      } else if (!isUnreleased && !isSplitUnreleased) {
-        const parsedBrowserVersion = (0, _utils.semverify)(splitVersion);
-        all[normalizedBrowserName] = (0, _utils.semverMin)(version, parsedBrowserVersion);
-      }
-    } catch (e) {}
-
-    return all;
-  }, {});
-}
-
-function outputDecimalWarning(decimalTargets) {
-  if (!decimalTargets.length) {
-    return;
-  }
-
-  console.warn("Warning, the following targets are using a decimal version:\n");
-  decimalTargets.forEach(({
-    target,
-    value
-  }) => console.warn(`  ${target}: ${value}`));
-  console.warn(`
-We recommend using a string for minor/patch versions to avoid numbers like 6.10
-getting parsed as 6.1, which can lead to unexpected behavior.
-`);
-}
-
-function semverifyTarget(target, value) {
-  try {
-    return (0, _utils.semverify)(value);
-  } catch (error) {
-    throw new Error(v.formatMessage(`'${value}' is not a valid value for 'targets.${target}'.`));
-  }
-}
-
-const targetParserMap = {
-  __default(target, value) {
-    const version = (0, _utils.isUnreleasedVersion)(value, target) ? value.toLowerCase() : semverifyTarget(target, value);
-    return [target, version];
+function createClassFeaturePlugin({
+  name,
+  feature,
+  loose,
+  manipulateOptions,
+  api = {
+    assumption: () => void 0
   },
+  inherits
+}) {
+  const setPublicClassFields = api.assumption("setPublicClassFields");
+  const privateFieldsAsProperties = api.assumption("privateFieldsAsProperties");
+  const constantSuper = api.assumption("constantSuper");
+  const noDocumentAll = api.assumption("noDocumentAll");
 
-  node(target, value) {
-    const parsed = value === true || value === "current" ? process.versions.node : semverifyTarget(target, value);
-    return [target, parsed];
-  }
+  if (loose === true) {
+    const explicit = [];
 
-};
+    if (setPublicClassFields !== undefined) {
+      explicit.push(`"setPublicClassFields"`);
+    }
 
-function generateTargets(inputTargets) {
-  const input = Object.assign({}, inputTargets);
-  delete input.esmodules;
-  delete input.browsers;
-  return input;
-}
+    if (privateFieldsAsProperties !== undefined) {
+      explicit.push(`"privateFieldsAsProperties"`);
+    }
 
-function resolveTargets(queries, env) {
-  const resolved = _browserslist(queries, {
-    mobileToDesktop: true,
-    env
-  });
-
-  return getLowestVersions(resolved);
-}
-
-function getTargets(inputTargets = {}, options = {}) {
-  var _browsers, _browsers2;
-
-  let {
-    browsers,
-    esmodules
-  } = inputTargets;
-  const {
-    configPath = "."
-  } = options;
-  validateBrowsers(browsers);
-  const input = generateTargets(inputTargets);
-  let targets = validateTargetNames(input);
-  const shouldParseBrowsers = !!browsers;
-  const hasTargets = shouldParseBrowsers || Object.keys(targets).length > 0;
-  const shouldSearchForConfig = !options.ignoreBrowserslistConfig && !hasTargets;
-
-  if (!browsers && shouldSearchForConfig) {
-    browsers = _browserslist.loadConfig({
-      config: options.configFile,
-      path: configPath,
-      env: options.browserslistEnv
-    });
-
-    if (browsers == null) {
-      {
-        browsers = [];
-      }
+    if (explicit.length !== 0) {
+      console.warn(`[${name}]: You are using the "loose: true" option and you are` + ` explicitly setting a value for the ${explicit.join(" and ")}` + ` assumption${explicit.length > 1 ? "s" : ""}. The "loose" option` + ` can cause incompatibilities with the other class features` + ` plugins, so it's recommended that you replace it with the` + ` following top-level option:\n` + `\t"assumptions": {\n` + `\t\t"setPublicClassFields": true,\n` + `\t\t"privateFieldsAsProperties": true\n` + `\t}`);
     }
   }
 
-  if (esmodules && (esmodules !== "intersect" || !((_browsers = browsers) != null && _browsers.length))) {
-    browsers = Object.keys(ESM_SUPPORT).map(browser => `${browser} >= ${ESM_SUPPORT[browser]}`).join(", ");
-    esmodules = false;
-  }
+  return {
+    name,
+    manipulateOptions,
+    inherits,
 
-  if ((_browsers2 = browsers) != null && _browsers2.length) {
-    const queryBrowsers = resolveTargets(browsers, options.browserslistEnv);
+    pre() {
+      (0, _features.enableFeature)(this.file, feature, loose);
 
-    if (esmodules === "intersect") {
-      for (const browser of Object.keys(queryBrowsers)) {
-        const version = queryBrowsers[browser];
+      if (!this.file.get(versionKey) || this.file.get(versionKey) < version) {
+        this.file.set(versionKey, version);
+      }
+    },
 
-        if (ESM_SUPPORT[browser]) {
-          queryBrowsers[browser] = (0, _utils.getHighestUnreleased)(version, (0, _utils.semverify)(ESM_SUPPORT[browser]), browser);
+    visitor: {
+      Class(path, state) {
+        if (this.file.get(versionKey) !== version) return;
+        if (!(0, _features.shouldTransform)(path, this.file)) return;
+        if (path.isClassDeclaration()) (0, _typescript.assertFieldTransformed)(path);
+        const loose = (0, _features.isLoose)(this.file, feature);
+        let constructor;
+        const isDecorated = (0, _decorators.hasDecorators)(path.node);
+        const props = [];
+        const elements = [];
+        const computedPaths = [];
+        const privateNames = new Set();
+        const body = path.get("body");
+
+        for (const path of body.get("body")) {
+          if ((path.isClassProperty() || path.isClassMethod()) && path.node.computed) {
+            computedPaths.push(path);
+          }
+
+          if (path.isPrivate()) {
+            const {
+              name
+            } = path.node.key.id;
+            const getName = `get ${name}`;
+            const setName = `set ${name}`;
+
+            if (path.isClassPrivateMethod()) {
+              if (path.node.kind === "get") {
+                if (privateNames.has(getName) || privateNames.has(name) && !privateNames.has(setName)) {
+                  throw path.buildCodeFrameError("Duplicate private field");
+                }
+
+                privateNames.add(getName).add(name);
+              } else if (path.node.kind === "set") {
+                if (privateNames.has(setName) || privateNames.has(name) && !privateNames.has(getName)) {
+                  throw path.buildCodeFrameError("Duplicate private field");
+                }
+
+                privateNames.add(setName).add(name);
+              }
+            } else {
+              if (privateNames.has(name) && !privateNames.has(getName) && !privateNames.has(setName) || privateNames.has(name) && (privateNames.has(getName) || privateNames.has(setName))) {
+                throw path.buildCodeFrameError("Duplicate private field");
+              }
+
+              privateNames.add(name);
+            }
+          }
+
+          if (path.isClassMethod({
+            kind: "constructor"
+          })) {
+            constructor = path;
+          } else {
+            elements.push(path);
+
+            if (path.isProperty() || path.isPrivate() || path.isStaticBlock != null && path.isStaticBlock()) {
+              props.push(path);
+            }
+          }
+        }
+
+        if (!props.length && !isDecorated) return;
+        const innerBinding = path.node.id;
+        let ref;
+
+        if (!innerBinding || path.isClassExpression()) {
+          (0, _helperFunctionName.default)(path);
+          ref = path.scope.generateUidIdentifier("class");
         } else {
-          delete queryBrowsers[browser];
+          ref = _core.types.cloneNode(path.node.id);
+        }
+
+        const privateNamesMap = (0, _fields.buildPrivateNamesMap)(props);
+        const privateNamesNodes = (0, _fields.buildPrivateNamesNodes)(privateNamesMap, privateFieldsAsProperties != null ? privateFieldsAsProperties : loose, state);
+        (0, _fields.transformPrivateNamesUsage)(ref, path, privateNamesMap, {
+          privateFieldsAsProperties: privateFieldsAsProperties != null ? privateFieldsAsProperties : loose,
+          noDocumentAll,
+          innerBinding
+        }, state);
+        let keysNodes, staticNodes, instanceNodes, pureStaticNodes, wrapClass;
+
+        if (isDecorated) {
+          staticNodes = pureStaticNodes = keysNodes = [];
+          ({
+            instanceNodes,
+            wrapClass
+          } = (0, _decorators.buildDecoratedClass)(ref, path, elements, this.file));
+        } else {
+          keysNodes = (0, _misc.extractComputedKeys)(ref, path, computedPaths, this.file);
+          ({
+            staticNodes,
+            pureStaticNodes,
+            instanceNodes,
+            wrapClass
+          } = (0, _fields.buildFieldsInitNodes)(ref, path.node.superClass, props, privateNamesMap, state, setPublicClassFields != null ? setPublicClassFields : loose, privateFieldsAsProperties != null ? privateFieldsAsProperties : loose, constantSuper != null ? constantSuper : loose, innerBinding));
+        }
+
+        if (instanceNodes.length > 0) {
+          (0, _misc.injectInitialization)(path, constructor, instanceNodes, (referenceVisitor, state) => {
+            if (isDecorated) return;
+
+            for (const prop of props) {
+              if (_core.types.isStaticBlock != null && _core.types.isStaticBlock(prop.node) || prop.node.static) continue;
+              prop.traverse(referenceVisitor, state);
+            }
+          });
+        }
+
+        const wrappedPath = wrapClass(path);
+        wrappedPath.insertBefore([...privateNamesNodes, ...keysNodes]);
+
+        if (staticNodes.length > 0) {
+          wrappedPath.insertAfter(staticNodes);
+        }
+
+        if (pureStaticNodes.length > 0) {
+          wrappedPath.find(parent => parent.isStatement() || parent.isDeclaration()).insertAfter(pureStaticNodes);
+        }
+      },
+
+      ExportDefaultDeclaration(path) {
+        if (this.file.get(versionKey) !== version) return;
+        const decl = path.get("declaration");
+
+        if (decl.isClassDeclaration() && (0, _decorators.hasDecorators)(decl.node)) {
+          if (decl.node.id) {
+            (0, _helperSplitExportDeclaration.default)(path);
+          } else {
+            decl.node.type = "ClassExpression";
+          }
         }
       }
+
     }
-
-    targets = Object.assign(queryBrowsers, targets);
-  }
-
-  const result = {};
-  const decimalWarnings = [];
-
-  for (const target of Object.keys(targets).sort()) {
-    var _targetParserMap$targ;
-
-    const value = targets[target];
-
-    if (typeof value === "number" && value % 1 !== 0) {
-      decimalWarnings.push({
-        target,
-        value
-      });
-    }
-
-    const parser = (_targetParserMap$targ = targetParserMap[target]) != null ? _targetParserMap$targ : targetParserMap.__default;
-    const [parsedTarget, parsedValue] = parser(target, value);
-
-    if (parsedValue) {
-      result[parsedTarget] = parsedValue;
-    }
-  }
-
-  outputDecimalWarning(decimalWarnings);
-  return result;
+  };
 }
