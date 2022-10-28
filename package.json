@@ -1,56 +1,60 @@
 {
-  "_from": "@babel/helper-builder-binary-assignment-operator-visitor@^7.16.7",
-  "_id": "@babel/helper-builder-binary-assignment-operator-visitor@7.16.7",
+  "_from": "semver@^6.3.0",
+  "_id": "semver@6.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-C6FdbRaxYjwVu/geKW4ZeQ0Q31AftgRcdSnZ5/jsH6BzCJbtvXvhpfkbkThYSuutZA7nCXpPR6AD9zd1dprMkA==",
-  "_location": "/@babel/helper-builder-binary-assignment-operator-visitor",
+  "_integrity": "sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==",
+  "_location": "/@babel/helper-compilation-targets/semver",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/helper-builder-binary-assignment-operator-visitor@^7.16.7",
-    "name": "@babel/helper-builder-binary-assignment-operator-visitor",
-    "escapedName": "@babel%2fhelper-builder-binary-assignment-operator-visitor",
-    "scope": "@babel",
-    "rawSpec": "^7.16.7",
+    "raw": "semver@^6.3.0",
+    "name": "semver",
+    "escapedName": "semver",
+    "rawSpec": "^6.3.0",
     "saveSpec": null,
-    "fetchSpec": "^7.16.7"
+    "fetchSpec": "^6.3.0"
   },
   "_requiredBy": [
-    "/@babel/plugin-transform-exponentiation-operator"
+    "/@babel/helper-compilation-targets"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/helper-builder-binary-assignment-operator-visitor/-/helper-builder-binary-assignment-operator-visitor-7.16.7.tgz",
-  "_shasum": "38d138561ea207f0f69eb1626a418e4f7e6a580b",
-  "_spec": "@babel/helper-builder-binary-assignment-operator-visitor@^7.16.7",
-  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\plugin-transform-exponentiation-operator",
-  "author": {
-    "name": "The Babel Team",
-    "url": "https://babel.dev/team"
+  "_resolved": "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz",
+  "_shasum": "ee0a64c8af5e8ceea67687b133761e1becbd1d3d",
+  "_spec": "semver@^6.3.0",
+  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\helper-compilation-targets",
+  "bin": {
+    "semver": "bin/semver.js"
   },
   "bugs": {
-    "url": "https://github.com/babel/babel/issues"
+    "url": "https://github.com/npm/node-semver/issues"
   },
   "bundleDependencies": false,
-  "dependencies": {
-    "@babel/helper-explode-assignable-expression": "^7.16.7",
-    "@babel/types": "^7.16.7"
-  },
   "deprecated": false,
-  "description": "Helper function to build binary assignment operator visitors",
-  "engines": {
-    "node": ">=6.9.0"
+  "description": "The semantic version parser used by npm.",
+  "devDependencies": {
+    "tap": "^14.3.1"
   },
-  "homepage": "https://babel.dev/docs/en/next/babel-helper-builder-binary-assignment-operator-visitor",
-  "license": "MIT",
-  "main": "./lib/index.js",
-  "name": "@babel/helper-builder-binary-assignment-operator-visitor",
-  "publishConfig": {
-    "access": "public"
-  },
+  "files": [
+    "bin",
+    "range.bnf",
+    "semver.js"
+  ],
+  "homepage": "https://github.com/npm/node-semver#readme",
+  "license": "ISC",
+  "main": "semver.js",
+  "name": "semver",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-helper-builder-binary-assignment-operator-visitor"
+    "url": "git+https://github.com/npm/node-semver.git"
   },
-  "version": "7.16.7"
+  "scripts": {
+    "postpublish": "git push origin --follow-tags",
+    "postversion": "npm publish",
+    "preversion": "npm test",
+    "test": "tap"
+  },
+  "tap": {
+    "check-coverage": true
+  },
+  "version": "6.3.0"
 }
