@@ -1,60 +1,69 @@
 {
-  "_from": "semver@^6.3.0",
-  "_id": "semver@6.3.0",
+  "_from": "@babel/generator@^7.17.9",
+  "_id": "@babel/generator@7.17.9",
   "_inBundle": false,
-  "_integrity": "sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==",
-  "_location": "/@babel/core/semver",
+  "_integrity": "sha512-rAdDousTwxbIxbz5I7GEQ3lUip+xVCXooZNbsydCWs3xA7ZsYOv+CFRdzGxRX78BmQHu9B1Eso59AOZQOJDEdQ==",
+  "_location": "/@babel/generator",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "semver@^6.3.0",
-    "name": "semver",
-    "escapedName": "semver",
-    "rawSpec": "^6.3.0",
+    "raw": "@babel/generator@^7.17.9",
+    "name": "@babel/generator",
+    "escapedName": "@babel%2fgenerator",
+    "scope": "@babel",
+    "rawSpec": "^7.17.9",
     "saveSpec": null,
-    "fetchSpec": "^6.3.0"
+    "fetchSpec": "^7.17.9"
   },
   "_requiredBy": [
-    "/@babel/core"
+    "/@babel/core",
+    "/@babel/traverse"
   ],
-  "_resolved": "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz",
-  "_shasum": "ee0a64c8af5e8ceea67687b133761e1becbd1d3d",
-  "_spec": "semver@^6.3.0",
+  "_resolved": "https://registry.npmjs.org/@babel/generator/-/generator-7.17.9.tgz",
+  "_shasum": "f4af9fd38fa8de143c29fce3f71852406fc1e2fc",
+  "_spec": "@babel/generator@^7.17.9",
   "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\core",
-  "bin": {
-    "semver": "bin/semver.js"
+  "author": {
+    "name": "The Babel Team",
+    "url": "https://babel.dev/team"
   },
   "bugs": {
-    "url": "https://github.com/npm/node-semver/issues"
+    "url": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20generator%22+is%3Aopen"
   },
   "bundleDependencies": false,
+  "dependencies": {
+    "@babel/types": "^7.17.0",
+    "jsesc": "^2.5.1",
+    "source-map": "^0.5.0"
+  },
   "deprecated": false,
-  "description": "The semantic version parser used by npm.",
+  "description": "Turns an AST into code.",
   "devDependencies": {
-    "tap": "^14.3.1"
+    "@babel/helper-fixtures": "^7.17.0",
+    "@babel/parser": "^7.17.9",
+    "@jridgewell/trace-mapping": "^0.3.4",
+    "@types/jsesc": "^2.5.0",
+    "@types/source-map": "^0.5.0",
+    "charcodes": "^0.2.0"
+  },
+  "engines": {
+    "node": ">=6.9.0"
   },
   "files": [
-    "bin",
-    "range.bnf",
-    "semver.js"
+    "lib"
   ],
-  "homepage": "https://github.com/npm/node-semver#readme",
-  "license": "ISC",
-  "main": "semver.js",
-  "name": "semver",
+  "homepage": "https://babel.dev/docs/en/next/babel-generator",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "name": "@babel/generator",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/npm/node-semver.git"
+    "url": "git+https://github.com/babel/babel.git",
+    "directory": "packages/babel-generator"
   },
-  "scripts": {
-    "postpublish": "git push origin --follow-tags",
-    "postversion": "npm publish",
-    "preversion": "npm test",
-    "test": "tap"
-  },
-  "tap": {
-    "check-coverage": true
-  },
-  "version": "6.3.0"
+  "version": "7.17.9"
 }
