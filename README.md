@@ -1,19 +1,19 @@
-# @babel/helper-annotate-as-pure
+# @babel/helper-builder-binary-assignment-operator-visitor
 
-> Helper function to annotate paths and nodes with #__PURE__ comment
+> Helper function to build binary assignment operator visitors
 
-See our website [@babel/helper-annotate-as-pure](https://babeljs.io/docs/en/babel-helper-annotate-as-pure) for more information.
+See our website [@babel/helper-builder-binary-assignment-operator-visitor](https://babeljs.io/docs/en/babel-helper-builder-binary-assignment-operator-visitor) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-annotate-as-pure
+npm install --save @babel/helper-builder-binary-assignment-operator-visitor
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-annotate-as-pure
+yarn add @babel/helper-builder-binary-assignment-operator-visitor
 ```
