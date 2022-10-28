@@ -3,109 +3,95 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.needsParens = needsParens;
-exports.needsWhitespace = needsWhitespace;
-exports.needsWhitespaceAfter = needsWhitespaceAfter;
-exports.needsWhitespaceBefore = needsWhitespaceBefore;
+exports.CodeGenerator = void 0;
+exports.default = generate;
 
-var whitespace = require("./whitespace");
+var _sourceMap = require("./source-map");
 
-var parens = require("./parentheses");
+var _printer = require("./printer");
 
-var _t = require("@babel/types");
-
-const {
-  FLIPPED_ALIAS_KEYS,
-  isCallExpression,
-  isExpressionStatement,
-  isMemberExpression,
-  isNewExpression
-} = _t;
-
-function expandAliases(obj) {
-  const newObj = {};
-
-  function add(type, func) {
-    const fn = newObj[type];
-    newObj[type] = fn ? function (node, parent, stack) {
-      const result = fn(node, parent, stack);
-      return result == null ? func(node, parent, stack) : result;
-    } : func;
+class Generator extends _printer.default {
+  constructor(ast, opts = {}, code) {
+    const format = normalizeOptions(code, opts);
+    const map = opts.sourceMaps ? new _sourceMap.default(opts, code) : null;
+    super(format, map);
+    this.ast = void 0;
+    this.ast = ast;
   }
 
-  for (const type of Object.keys(obj)) {
-    const aliases = FLIPPED_ALIAS_KEYS[type];
+  generate() {
+    return super.generate(this.ast);
+  }
 
-    if (aliases) {
-      for (const alias of aliases) {
-        add(alias, obj[type]);
-      }
-    } else {
-      add(type, obj[type]);
+}
+
+function normalizeOptions(code, opts) {
+  const format = {
+    auxiliaryCommentBefore: opts.auxiliaryCommentBefore,
+    auxiliaryCommentAfter: opts.auxiliaryCommentAfter,
+    shouldPrintComment: opts.shouldPrintComment,
+    retainLines: opts.retainLines,
+    retainFunctionParens: opts.retainFunctionParens,
+    comments: opts.comments == null || opts.comments,
+    compact: opts.compact,
+    minified: opts.minified,
+    concise: opts.concise,
+    indent: {
+      adjustMultilineComment: true,
+      style: "  ",
+      base: 0
+    },
+    decoratorsBeforeExport: !!opts.decoratorsBeforeExport,
+    jsescOption: Object.assign({
+      quotes: "double",
+      wrap: true,
+      minimal: false
+    }, opts.jsescOption),
+    recordAndTupleSyntaxType: opts.recordAndTupleSyntaxType,
+    topicToken: opts.topicToken
+  };
+  {
+    format.jsonCompatibleStrings = opts.jsonCompatibleStrings;
+  }
+
+  if (format.minified) {
+    format.compact = true;
+
+    format.shouldPrintComment = format.shouldPrintComment || (() => format.comments);
+  } else {
+    format.shouldPrintComment = format.shouldPrintComment || (value => format.comments || value.indexOf("@license") >= 0 || value.indexOf("@preserve") >= 0);
+  }
+
+  if (format.compact === "auto") {
+    format.compact = code.length > 500000;
+
+    if (format.compact) {
+      console.error("[BABEL] Note: The code generator has deoptimised the styling of " + `${opts.filename} as it exceeds the max of ${"500KB"}.`);
     }
   }
 
-  return newObj;
-}
-
-const expandedParens = expandAliases(parens);
-const expandedWhitespaceNodes = expandAliases(whitespace.nodes);
-const expandedWhitespaceList = expandAliases(whitespace.list);
-
-function find(obj, node, parent, printStack) {
-  const fn = obj[node.type];
-  return fn ? fn(node, parent, printStack) : null;
-}
-
-function isOrHasCallExpression(node) {
-  if (isCallExpression(node)) {
-    return true;
+  if (format.compact) {
+    format.indent.adjustMultilineComment = false;
   }
 
-  return isMemberExpression(node) && isOrHasCallExpression(node.object);
+  return format;
 }
 
-function needsWhitespace(node, parent, type) {
-  if (!node) return 0;
-
-  if (isExpressionStatement(node)) {
-    node = node.expression;
+class CodeGenerator {
+  constructor(ast, opts, code) {
+    this._generator = void 0;
+    this._generator = new Generator(ast, opts, code);
   }
 
-  let linesInfo = find(expandedWhitespaceNodes, node, parent);
-
-  if (!linesInfo) {
-    const items = find(expandedWhitespaceList, node, parent);
-
-    if (items) {
-      for (let i = 0; i < items.length; i++) {
-        linesInfo = needsWhitespace(items[i], node, type);
-        if (linesInfo) break;
-      }
-    }
+  generate() {
+    return this._generator.generate();
   }
 
-  if (typeof linesInfo === "object" && linesInfo !== null) {
-    return linesInfo[type] || 0;
-  }
-
-  return 0;
 }
 
-function needsWhitespaceBefore(node, parent) {
-  return needsWhitespace(node, parent, "before");
-}
+exports.CodeGenerator = CodeGenerator;
 
-function needsWhitespaceAfter(node, parent) {
-  return needsWhitespace(node, parent, "after");
-}
-
-function needsParens(node, parent, printStack) {
-  if (!parent) return false;
-
-  if (isNewExpression(parent) && parent.callee === node) {
-    if (isOrHasCallExpression(node)) return true;
-  }
-
-  return find(expandedParens, node, parent, printStack);
+function generate(ast, opts, code) {
+  const gen = new Generator(ast, opts, code);
+  return gen.generate();
 }
