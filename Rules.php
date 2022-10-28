@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Inflector\Rules\English;
+namespace Doctrine\Inflector\Rules\French;
 
 use Doctrine\Inflector\Rules\Patterns;
 use Doctrine\Inflector\Rules\Ruleset;
