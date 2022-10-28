@@ -1,19 +1,19 @@
-# @babel/helper-explode-assignable-expression
+# @babel/helper-function-name
 
-> Helper function to explode an assignable expression
+> Helper function to change the property 'name' of every function
 
-See our website [@babel/helper-explode-assignable-expression](https://babeljs.io/docs/en/babel-helper-explode-assignable-expression) for more information.
+See our website [@babel/helper-function-name](https://babeljs.io/docs/en/babel-helper-function-name) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-explode-assignable-expression
+npm install --save @babel/helper-function-name
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-explode-assignable-expression
+yarn add @babel/helper-function-name
 ```
