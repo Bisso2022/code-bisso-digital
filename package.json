@@ -1,32 +1,31 @@
 {
-  "_from": "@babel/helper-compilation-targets@^7.17.7",
-  "_id": "@babel/helper-compilation-targets@7.17.7",
+  "_from": "@babel/helper-create-class-features-plugin@^7.16.7",
+  "_id": "@babel/helper-create-class-features-plugin@7.17.9",
   "_inBundle": false,
-  "_integrity": "sha512-UFzlz2jjd8kroj0hmCFV5zr+tQPi1dpC2cRsDV/3IEW8bJfCPrPpmcSN6ZS8RqIq4LXcmpipCQFPddyFA5Yc7w==",
-  "_location": "/@babel/helper-compilation-targets",
+  "_integrity": "sha512-kUjip3gruz6AJKOq5i3nC6CoCEEF/oHH3cp6tOZhB+IyyyPyW0g1Gfsxn3mkk6S08pIA2y8GQh609v9G/5sHVQ==",
+  "_location": "/@babel/helper-create-class-features-plugin",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/helper-compilation-targets@^7.17.7",
-    "name": "@babel/helper-compilation-targets",
-    "escapedName": "@babel%2fhelper-compilation-targets",
+    "raw": "@babel/helper-create-class-features-plugin@^7.16.7",
+    "name": "@babel/helper-create-class-features-plugin",
+    "escapedName": "@babel%2fhelper-create-class-features-plugin",
     "scope": "@babel",
-    "rawSpec": "^7.17.7",
+    "rawSpec": "^7.16.7",
     "saveSpec": null,
-    "fetchSpec": "^7.17.7"
+    "fetchSpec": "^7.16.7"
   },
   "_requiredBy": [
-    "/@babel/core",
-    "/@babel/helper-define-polyfill-provider",
-    "/@babel/plugin-proposal-object-rest-spread",
-    "/@babel/plugin-transform-function-name",
-    "/@babel/preset-env"
+    "/@babel/plugin-proposal-class-properties",
+    "/@babel/plugin-proposal-class-static-block",
+    "/@babel/plugin-proposal-private-methods",
+    "/@babel/plugin-proposal-private-property-in-object"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.17.7.tgz",
-  "_shasum": "a3c2924f5e5f0379b356d4cfb313d1414dc30e46",
-  "_spec": "@babel/helper-compilation-targets@^7.17.7",
-  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\core",
+  "_resolved": "https://registry.npmjs.org/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.17.9.tgz",
+  "_shasum": "71835d7fb9f38bd9f1378e40a4c0902fdc2ea49d",
+  "_spec": "@babel/helper-create-class-features-plugin@^7.16.7",
+  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\plugin-proposal-class-properties",
   "author": {
     "name": "The Babel Team",
     "url": "https://babel.dev/team"
@@ -36,24 +35,24 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@babel/compat-data": "^7.17.7",
-    "@babel/helper-validator-option": "^7.16.7",
-    "browserslist": "^4.17.5",
-    "semver": "^6.3.0"
+    "@babel/helper-annotate-as-pure": "^7.16.7",
+    "@babel/helper-environment-visitor": "^7.16.7",
+    "@babel/helper-function-name": "^7.17.9",
+    "@babel/helper-member-expression-to-functions": "^7.17.7",
+    "@babel/helper-optimise-call-expression": "^7.16.7",
+    "@babel/helper-replace-supers": "^7.16.7",
+    "@babel/helper-split-export-declaration": "^7.16.7"
   },
   "deprecated": false,
-  "description": "Helper functions on Babel compilation targets",
+  "description": "Compile class public and private fields, private methods and decorators to ES6",
   "devDependencies": {
-    "@babel/core": "^7.17.7",
+    "@babel/core": "^7.17.9",
     "@babel/helper-plugin-test-runner": "^7.16.7",
-    "@types/semver": "^5.5.0"
+    "@babel/plugin-syntax-class-static-block": "^7.14.5",
+    "@babel/preset-env": "^7.16.11"
   },
   "engines": {
     "node": ">=6.9.0"
-  },
-  "exports": {
-    ".": "./lib/index.js",
-    "./package.json": "./package.json"
   },
   "homepage": "https://github.com/babel/babel#readme",
   "keywords": [
@@ -62,7 +61,7 @@
   ],
   "license": "MIT",
   "main": "./lib/index.js",
-  "name": "@babel/helper-compilation-targets",
+  "name": "@babel/helper-create-class-features-plugin",
   "peerDependencies": {
     "@babel/core": "^7.0.0"
   },
@@ -72,7 +71,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-helper-compilation-targets"
+    "directory": "packages/babel-helper-create-class-features-plugin"
   },
-  "version": "7.17.7"
+  "version": "7.17.9"
 }
