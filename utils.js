@@ -1,196 +1,149 @@
-"use strict";
+const PrimitiveType = 1;
+const ObjectType = 2;
+const ArrayType = 3;
+const PromiseType = 4;
+const ReadableStringType = 5;
+const ReadableObjectType = 6;
+// https://tc39.es/ecma262/#table-json-single-character-escapes
+const escapableCharCodeSubstitution = { // JSON Single Character Escape Sequences
+    0x08: '\\b',
+    0x09: '\\t',
+    0x0a: '\\n',
+    0x0c: '\\f',
+    0x0d: '\\r',
+    0x22: '\\\"',
+    0x5c: '\\\\'
+};
 
-exports.__esModule = true;
-exports.intersection = intersection;
-exports.has = has;
-exports.resolveKey = resolveKey;
-exports.resolveSource = resolveSource;
-exports.getImportSource = getImportSource;
-exports.getRequireSource = getRequireSource;
-exports.createUtilsGetter = createUtilsGetter;
-
-var babel = _interopRequireWildcard(require("@babel/core"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const {
-  types: t,
-  template
-} = babel.default || babel;
-
-function intersection(a, b) {
-  const result = new Set();
-  a.forEach(v => b.has(v) && result.add(v));
-  return result;
+function isLeadingSurrogate(code) {
+    return code >= 0xD800 && code <= 0xDBFF;
 }
 
-function has(object, key) {
-  return Object.prototype.hasOwnProperty.call(object, key);
+function isTrailingSurrogate(code) {
+    return code >= 0xDC00 && code <= 0xDFFF;
 }
 
-function getType(target) {
-  return Object.prototype.toString.call(target).slice(8, -1);
+function isReadableStream(value) {
+    return (
+        typeof value.pipe === 'function' &&
+        typeof value._read === 'function' &&
+        typeof value._readableState === 'object' && value._readableState !== null
+    );
 }
 
-function resolveId(path) {
-  if (path.isIdentifier() && !path.scope.hasBinding(path.node.name,
-  /* noGlobals */
-  true)) {
-    return path.node.name;
-  }
-
-  const {
-    deopt
-  } = path.evaluate();
-
-  if (deopt && deopt.isIdentifier()) {
-    return deopt.node.name;
-  }
-}
-
-function resolveKey(path, computed = false) {
-  const {
-    node,
-    parent,
-    scope
-  } = path;
-  if (path.isStringLiteral()) return node.value;
-  const {
-    name
-  } = node;
-  const isIdentifier = path.isIdentifier();
-  if (isIdentifier && !(computed || parent.computed)) return name;
-
-  if (computed && path.isMemberExpression() && path.get("object").isIdentifier({
-    name: "Symbol"
-  }) && !scope.hasBinding("Symbol",
-  /* noGlobals */
-  true)) {
-    const sym = resolveKey(path.get("property"), path.node.computed);
-    if (sym) return "Symbol." + sym;
-  }
-
-  if (!isIdentifier || scope.hasBinding(name,
-  /* noGlobals */
-  true)) {
-    const {
-      value
-    } = path.evaluate();
-    if (typeof value === "string") return value;
-  }
-}
-
-function resolveSource(obj) {
-  if (obj.isMemberExpression() && obj.get("property").isIdentifier({
-    name: "prototype"
-  })) {
-    const id = resolveId(obj.get("object"));
-
-    if (id) {
-      return {
-        id,
-        placement: "prototype"
-      };
+function replaceValue(holder, key, value, replacer) {
+    if (value && typeof value.toJSON === 'function') {
+        value = value.toJSON();
     }
 
-    return {
-      id: null,
-      placement: null
-    };
-  }
+    if (replacer !== null) {
+        value = replacer.call(holder, String(key), value);
+    }
 
-  const id = resolveId(obj);
+    switch (typeof value) {
+        case 'function':
+        case 'symbol':
+            value = undefined;
+            break;
 
-  if (id) {
-    return {
-      id,
-      placement: "static"
-    };
-  }
+        case 'object':
+            if (value !== null) {
+                const cls = value.constructor;
+                if (cls === String || cls === Number || cls === Boolean) {
+                    value = value.valueOf();
+                }
+            }
+            break;
+    }
 
-  const {
-    value
-  } = obj.evaluate();
-
-  if (value !== undefined) {
-    return {
-      id: getType(value),
-      placement: "prototype"
-    };
-  } else if (obj.isRegExpLiteral()) {
-    return {
-      id: "RegExp",
-      placement: "prototype"
-    };
-  } else if (obj.isFunction()) {
-    return {
-      id: "Function",
-      placement: "prototype"
-    };
-  }
-
-  return {
-    id: null,
-    placement: null
-  };
+    return value;
 }
 
-function getImportSource({
-  node
-}) {
-  if (node.specifiers.length === 0) return node.source.value;
+function getTypeNative(value) {
+    if (value === null || typeof value !== 'object') {
+        return PrimitiveType;
+    }
+
+    if (Array.isArray(value)) {
+        return ArrayType;
+    }
+
+    return ObjectType;
 }
 
-function getRequireSource({
-  node
-}) {
-  if (!t.isExpressionStatement(node)) return;
-  const {
-    expression
-  } = node;
-  const isRequire = t.isCallExpression(expression) && t.isIdentifier(expression.callee) && expression.callee.name === "require" && expression.arguments.length === 1 && t.isStringLiteral(expression.arguments[0]);
-  if (isRequire) return expression.arguments[0].value;
+function getTypeAsync(value) {
+    if (value === null || typeof value !== 'object') {
+        return PrimitiveType;
+    }
+
+    if (typeof value.then === 'function') {
+        return PromiseType;
+    }
+
+    if (isReadableStream(value)) {
+        return value._readableState.objectMode ? ReadableObjectType : ReadableStringType;
+    }
+
+    if (Array.isArray(value)) {
+        return ArrayType;
+    }
+
+    return ObjectType;
 }
 
-function hoist(node) {
-  node._blockHoist = 3;
-  return node;
+function normalizeReplacer(replacer) {
+    if (typeof replacer === 'function') {
+        return replacer;
+    }
+
+    if (Array.isArray(replacer)) {
+        const allowlist = new Set(replacer
+            .map(item => {
+                const cls = item && item.constructor;
+                return cls === String || cls === Number ? String(item) : null;
+            })
+            .filter(item => typeof item === 'string')
+        );
+
+        return [...allowlist];
+    }
+
+    return null;
 }
 
-function createUtilsGetter(cache) {
-  return path => {
-    const prog = path.findParent(p => p.isProgram());
-    return {
-      injectGlobalImport(url) {
-        cache.storeAnonymous(prog, url, (isScript, source) => {
-          return isScript ? template.statement.ast`require(${source})` : t.importDeclaration([], source);
-        });
-      },
+function normalizeSpace(space) {
+    if (typeof space === 'number') {
+        if (!Number.isFinite(space) || space < 1) {
+            return false;
+        }
 
-      injectNamedImport(url, name, hint = name) {
-        return cache.storeNamed(prog, url, name, (isScript, source, name) => {
-          const id = prog.scope.generateUidIdentifier(hint);
-          return {
-            node: isScript ? hoist(template.statement.ast`
-                  var ${id} = require(${source}).${name}
-                `) : t.importDeclaration([t.importSpecifier(id, name)], source),
-            name: id.name
-          };
-        });
-      },
+        return ' '.repeat(Math.min(space, 10));
+    }
 
-      injectDefaultImport(url, hint = url) {
-        return cache.storeNamed(prog, url, "default", (isScript, source) => {
-          const id = prog.scope.generateUidIdentifier(hint);
-          return {
-            node: isScript ? hoist(template.statement.ast`var ${id} = require(${source})`) : t.importDeclaration([t.importDefaultSpecifier(id)], source),
-            name: id.name
-          };
-        });
-      }
+    if (typeof space === 'string') {
+        return space.slice(0, 10) || false;
+    }
 
-    };
-  };
+    return false;
 }
+
+module.exports = {
+    escapableCharCodeSubstitution,
+    isLeadingSurrogate,
+    isTrailingSurrogate,
+    type: {
+        PRIMITIVE: PrimitiveType,
+        PROMISE: PromiseType,
+        ARRAY: ArrayType,
+        OBJECT: ObjectType,
+        STRING_STREAM: ReadableStringType,
+        OBJECT_STREAM: ReadableObjectType
+    },
+
+    isReadableStream,
+    replaceValue,
+    getTypeNative,
+    getTypeAsync,
+    normalizeReplacer,
+    normalizeSpace
+};
