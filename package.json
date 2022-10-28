@@ -1,61 +1,93 @@
 {
-  "_from": "@babel/helper-optimise-call-expression@^7.16.7",
-  "_id": "@babel/helper-optimise-call-expression@7.16.7",
+  "_from": "@discoveryjs/json-ext@^0.5.0",
+  "_id": "@discoveryjs/json-ext@0.5.7",
   "_inBundle": false,
-  "_integrity": "sha512-EtgBhg7rd/JcnpZFXpBy0ze1YRfdm7BnBX4uKMBd3ixa3RGAE002JZB66FJyNH7g0F38U05pXmA5P8cBh7z+1w==",
-  "_location": "/@babel/helper-optimise-call-expression",
+  "_integrity": "sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==",
+  "_location": "/@discoveryjs/json-ext",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/helper-optimise-call-expression@^7.16.7",
-    "name": "@babel/helper-optimise-call-expression",
-    "escapedName": "@babel%2fhelper-optimise-call-expression",
-    "scope": "@babel",
-    "rawSpec": "^7.16.7",
+    "raw": "@discoveryjs/json-ext@^0.5.0",
+    "name": "@discoveryjs/json-ext",
+    "escapedName": "@discoveryjs%2fjson-ext",
+    "scope": "@discoveryjs",
+    "rawSpec": "^0.5.0",
     "saveSpec": null,
-    "fetchSpec": "^7.16.7"
+    "fetchSpec": "^0.5.0"
   },
   "_requiredBy": [
-    "/@babel/helper-create-class-features-plugin",
-    "/@babel/helper-replace-supers",
-    "/@babel/plugin-transform-classes"
+    "/webpack-cli"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/helper-optimise-call-expression/-/helper-optimise-call-expression-7.16.7.tgz",
-  "_shasum": "a34e3560605abbd31a18546bd2aad3e6d9a174f2",
-  "_spec": "@babel/helper-optimise-call-expression@^7.16.7",
-  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\helper-create-class-features-plugin",
+  "_resolved": "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz",
+  "_shasum": "1d572bfbbe14b7704e0ba0f39b74815b84870d70",
+  "_spec": "@discoveryjs/json-ext@^0.5.0",
+  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\webpack-cli",
   "author": {
-    "name": "The Babel Team",
-    "url": "https://babel.dev/team"
+    "name": "Roman Dvornov",
+    "email": "rdvornov@gmail.com",
+    "url": "https://github.com/lahmatiy"
+  },
+  "browser": {
+    "./src/stringify-stream.js": "./src/stringify-stream-browser.js",
+    "./src/text-decoder.js": "./src/text-decoder-browser.js",
+    "./src/version.js": "./dist/version.js"
   },
   "bugs": {
-    "url": "https://github.com/babel/babel/issues"
+    "url": "https://github.com/discoveryjs/json-ext/issues"
   },
   "bundleDependencies": false,
-  "dependencies": {
-    "@babel/types": "^7.16.7"
-  },
   "deprecated": false,
-  "description": "Helper function to optimise call expression",
+  "description": "A set of utilities that extend the use of JSON",
   "devDependencies": {
-    "@babel/generator": "^7.16.7",
-    "@babel/parser": "^7.16.7"
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "c8": "^7.10.0",
+    "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.10.0",
+    "mocha": "^8.4.0",
+    "rollup": "^2.28.2",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=10.0.0"
   },
-  "homepage": "https://babel.dev/docs/en/next/babel-helper-optimise-call-expression",
+  "files": [
+    "dist",
+    "src",
+    "index.d.ts"
+  ],
+  "homepage": "https://github.com/discoveryjs/json-ext#readme",
+  "keywords": [
+    "json",
+    "utils",
+    "stream",
+    "async",
+    "promise",
+    "stringify",
+    "info"
+  ],
   "license": "MIT",
-  "main": "./lib/index.js",
-  "name": "@babel/helper-optimise-call-expression",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "./src/index",
+  "name": "@discoveryjs/json-ext",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-helper-optimise-call-expression"
+    "url": "git+https://github.com/discoveryjs/json-ext.git"
   },
-  "version": "7.16.7"
+  "scripts": {
+    "build": "rollup --config",
+    "build-and-test": "npm run build && npm run test:dist",
+    "coverage": "c8 --reporter=lcovonly npm test",
+    "lint": "eslint src test",
+    "lint-and-test": "npm run lint && npm test",
+    "prepublishOnly": "npm run lint && npm test && npm run build-and-test",
+    "test": "mocha --reporter progress",
+    "test:all": "npm run test:src && npm run test:dist",
+    "test:dist": "cross-env MODE=dist npm test && cross-env MODE=dist-min npm test",
+    "test:src": "npm test"
+  },
+  "types": "./index.d.ts",
+  "version": "0.5.7"
 }
