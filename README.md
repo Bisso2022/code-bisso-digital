@@ -1,87 +1,64 @@
-PHP Cron Expression Parser
-==========================
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-[![Latest Stable Version](https://poser.pugx.org/dragonmantank/cron-expression/v/stable.png)](https://packagist.org/packages/dragonmantank/cron-expression) [![Total Downloads](https://poser.pugx.org/dragonmantank/cron-expression/downloads.png)](https://packagist.org/packages/dragonmantank/cron-expression) [![Build Status](https://secure.travis-ci.org/dragonmantank/cron-expression.png)](http://travis-ci.org/dragonmantank/cron-expression) [![StyleCI](https://github.styleci.io/repos/103715337/shield?branch=master)](https://github.styleci.io/repos/103715337)
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-The PHP cron expression parser can parse a CRON expression, determine if it is
-due to run, calculate the next run date of the expression, and calculate the previous
-run date of the expression.  You can calculate dates far into the future or past by
-skipping **n** number of matching dates.
+## About Laravel
 
-The parser can handle increments of ranges (e.g. */12, 2-59/3), intervals (e.g. 0-9),
-lists (e.g. 1,2,3), **W** to find the nearest weekday for a given day of the month, **L** to
-find the last day of the month, **L** to find the last given weekday of a month, and hash
-(#) to find the nth weekday of a given month.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-More information about this fork can be found in the blog post [here](http://ctankersley.com/2017/10/12/cron-expression-update/). tl;dr - v2.0.0 is a major breaking change, and @dragonmantank can better take care of the project in a separate fork.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Installing
-==========
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Add the dependency to your project:
+## Learning Laravel
 
-```bash
-composer require dragonmantank/cron-expression
-```
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Usage
-=====
-```php
-<?php
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-require_once '/vendor/autoload.php';
+## Laravel Sponsors
 
-// Works with predefined scheduling definitions
-$cron = new Cron\CronExpression('@daily');
-$cron->isDue();
-echo $cron->getNextRunDate()->format('Y-m-d H:i:s');
-echo $cron->getPreviousRunDate()->format('Y-m-d H:i:s');
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-// Works with complex expressions
-$cron = new Cron\CronExpression('3-59/15 6-12 */15 1 2-5');
-echo $cron->getNextRunDate()->format('Y-m-d H:i:s');
+### Premium Partners
 
-// Calculate a run date two iterations into the future
-$cron = new Cron\CronExpression('@daily');
-echo $cron->getNextRunDate(null, 2)->format('Y-m-d H:i:s');
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-// Calculate a run date relative to a specific time
-$cron = new Cron\CronExpression('@monthly');
-echo $cron->getNextRunDate('2010-01-12 00:00:00')->format('Y-m-d H:i:s');
-```
+## Contributing
 
-CRON Expressions
-================
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-A CRON expression is a string representing the schedule for a particular command to execute.  The parts of a CRON schedule are as follows:
+## Code of Conduct
 
-    *    *    *    *    *
-    -    -    -    -    -
-    |    |    |    |    |
-    |    |    |    |    |
-    |    |    |    |    +----- day of week (0 - 7) (Sunday=0 or 7)
-    |    |    |    +---------- month (1 - 12)
-    |    |    +--------------- day of month (1 - 31)
-    |    +-------------------- hour (0 - 23)
-    +------------------------- min (0 - 59)
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-This library also supports a few macros:
+## Security Vulnerabilities
 
-* `@yearly`, `@annually` - Run once a year, midnight, Jan. 1 - `0 0 1 1 *`
-* `@monthly` - Run once a month, midnight, first of month - `0 0 1 * *`
-* `@weekly` - Run once a week, midnight on Sun - `0 0 * * 0`
-* `@daily`, `@midnight` - Run once a day, midnight - `0 0 * * *`
-* `@hourly` - Run once an hour, first minute - `0 * * * *`
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-Requirements
-============
+## License
 
-- PHP 7.2+
-- PHPUnit is required to run the unit tests
-- Composer is required to run the unit tests
-
-Projects that Use cron-expression
-=================================
-* Part of the [Laravel Framework](https://github.com/laravel/framework/)
-* Available as a [Symfony Bundle - setono/cron-expression-bundle](https://github.com/Setono/CronExpressionBundle)
-* Framework agnostic, PHP-based job scheduler - [Crunz](https://github.com/lavary/crunz)
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
