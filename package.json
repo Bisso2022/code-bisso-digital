@@ -1,70 +1,60 @@
 {
-  "_from": "@babel/helper-create-regexp-features-plugin@^7.16.7",
-  "_id": "@babel/helper-create-regexp-features-plugin@7.17.0",
+  "_from": "semver@^6.1.2",
+  "_id": "semver@6.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-awO2So99wG6KnlE+TPs6rn83gCz5WlEePJDTnLEqbchMVrBeAujURVphRdigsk094VhvZehFoNOihSlcBjwsXA==",
-  "_location": "/@babel/helper-create-regexp-features-plugin",
+  "_integrity": "sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==",
+  "_location": "/@babel/helper-define-polyfill-provider/semver",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/helper-create-regexp-features-plugin@^7.16.7",
-    "name": "@babel/helper-create-regexp-features-plugin",
-    "escapedName": "@babel%2fhelper-create-regexp-features-plugin",
-    "scope": "@babel",
-    "rawSpec": "^7.16.7",
+    "raw": "semver@^6.1.2",
+    "name": "semver",
+    "escapedName": "semver",
+    "rawSpec": "^6.1.2",
     "saveSpec": null,
-    "fetchSpec": "^7.16.7"
+    "fetchSpec": "^6.1.2"
   },
   "_requiredBy": [
-    "/@babel/plugin-proposal-unicode-property-regex",
-    "/@babel/plugin-transform-dotall-regex",
-    "/@babel/plugin-transform-named-capturing-groups-regex",
-    "/@babel/plugin-transform-unicode-regex"
+    "/@babel/helper-define-polyfill-provider"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/helper-create-regexp-features-plugin/-/helper-create-regexp-features-plugin-7.17.0.tgz",
-  "_shasum": "1dcc7d40ba0c6b6b25618997c5dbfd310f186fe1",
-  "_spec": "@babel/helper-create-regexp-features-plugin@^7.16.7",
-  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\plugin-proposal-unicode-property-regex",
-  "author": {
-    "name": "The Babel Team",
-    "url": "https://babel.dev/team"
+  "_resolved": "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz",
+  "_shasum": "ee0a64c8af5e8ceea67687b133761e1becbd1d3d",
+  "_spec": "semver@^6.1.2",
+  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\helper-define-polyfill-provider",
+  "bin": {
+    "semver": "bin/semver.js"
   },
   "bugs": {
-    "url": "https://github.com/babel/babel/issues"
+    "url": "https://github.com/npm/node-semver/issues"
   },
   "bundleDependencies": false,
-  "dependencies": {
-    "@babel/helper-annotate-as-pure": "^7.16.7",
-    "regexpu-core": "^5.0.1"
-  },
   "deprecated": false,
-  "description": "Compile ESNext Regular Expressions to ES5",
+  "description": "The semantic version parser used by npm.",
   "devDependencies": {
-    "@babel/core": "^7.17.0",
-    "@babel/helper-plugin-test-runner": "^7.16.7"
+    "tap": "^14.3.1"
   },
-  "engines": {
-    "node": ">=6.9.0"
-  },
-  "homepage": "https://github.com/babel/babel#readme",
-  "keywords": [
-    "babel",
-    "babel-plugin"
+  "files": [
+    "bin",
+    "range.bnf",
+    "semver.js"
   ],
-  "license": "MIT",
-  "main": "./lib/index.js",
-  "name": "@babel/helper-create-regexp-features-plugin",
-  "peerDependencies": {
-    "@babel/core": "^7.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
+  "homepage": "https://github.com/npm/node-semver#readme",
+  "license": "ISC",
+  "main": "semver.js",
+  "name": "semver",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-helper-create-regexp-features-plugin"
+    "url": "git+https://github.com/npm/node-semver.git"
   },
-  "version": "7.17.0"
+  "scripts": {
+    "postpublish": "git push origin --follow-tags",
+    "postversion": "npm publish",
+    "preversion": "npm test",
+    "test": "tap"
+  },
+  "tap": {
+    "check-coverage": true
+  },
+  "version": "6.3.0"
 }
