@@ -1,19 +1,19 @@
-# @babel/helper-create-class-features-plugin
+# @babel/helper-create-regexp-features-plugin
 
-> Compile class public and private fields, private methods and decorators to ES6
+> Compile ESNext Regular Expressions to ES5
 
-See our website [@babel/helper-create-class-features-plugin](https://babeljs.io/docs/en/babel-helper-create-class-features-plugin) for more information.
+See our website [@babel/helper-create-regexp-features-plugin](https://babeljs.io/docs/en/babel-helper-create-regexp-features-plugin) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-create-class-features-plugin
+npm install --save @babel/helper-create-regexp-features-plugin
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-create-class-features-plugin
+yarn add @babel/helper-create-regexp-features-plugin
 ```
