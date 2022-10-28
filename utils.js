@@ -3,42 +3,67 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.makeStaticFileCache = makeStaticFileCache;
+exports.getHighestUnreleased = getHighestUnreleased;
+exports.getLowestImplementedVersion = getLowestImplementedVersion;
+exports.getLowestUnreleased = getLowestUnreleased;
+exports.isUnreleasedVersion = isUnreleasedVersion;
+exports.semverMin = semverMin;
+exports.semverify = semverify;
 
-var _caching = require("../caching");
+var _semver = require("semver");
 
-var fs = require("../../gensync-utils/fs");
+var _helperValidatorOption = require("@babel/helper-validator-option");
 
-function _fs2() {
-  const data = require("fs");
+var _targets = require("./targets");
 
-  _fs2 = function () {
-    return data;
-  };
+const versionRegExp = /^(\d+|\d+.\d+)$/;
+const v = new _helperValidatorOption.OptionValidator("@babel/helper-compilation-targets");
 
-  return data;
+function semverMin(first, second) {
+  return first && _semver.lt(first, second) ? first : second;
 }
 
-function makeStaticFileCache(fn) {
-  return (0, _caching.makeStrongCache)(function* (filepath, cache) {
-    const cached = cache.invalidate(() => fileMtime(filepath));
-
-    if (cached === null) {
-      return null;
-    }
-
-    return fn(filepath, yield* fs.readFile(filepath, "utf8"));
-  });
-}
-
-function fileMtime(filepath) {
-  if (!_fs2().existsSync(filepath)) return null;
-
-  try {
-    return +_fs2().statSync(filepath).mtime;
-  } catch (e) {
-    if (e.code !== "ENOENT" && e.code !== "ENOTDIR") throw e;
+function semverify(version) {
+  if (typeof version === "string" && _semver.valid(version)) {
+    return version;
   }
 
-  return null;
+  v.invariant(typeof version === "number" || typeof version === "string" && versionRegExp.test(version), `'${version}' is not a valid version`);
+  const split = version.toString().split(".");
+
+  while (split.length < 3) {
+    split.push("0");
+  }
+
+  return split.join(".");
+}
+
+function isUnreleasedVersion(version, env) {
+  const unreleasedLabel = _targets.unreleasedLabels[env];
+  return !!unreleasedLabel && unreleasedLabel === version.toString().toLowerCase();
+}
+
+function getLowestUnreleased(a, b, env) {
+  const unreleasedLabel = _targets.unreleasedLabels[env];
+  const hasUnreleased = [a, b].some(item => item === unreleasedLabel);
+
+  if (hasUnreleased) {
+    return a === hasUnreleased ? b : a || b;
+  }
+
+  return semverMin(a, b);
+}
+
+function getHighestUnreleased(a, b, env) {
+  return getLowestUnreleased(a, b, env) === a ? b : a;
+}
+
+function getLowestImplementedVersion(plugin, environment) {
+  const result = plugin[environment];
+
+  if (!result && environment === "android") {
+    return plugin.chrome;
+  }
+
+  return result;
 }
