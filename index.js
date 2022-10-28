@@ -3,56 +3,39 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = hoistVariables;
-
-var _t = require("@babel/types");
-
-const {
-  assignmentExpression,
-  expressionStatement,
-  identifier
-} = _t;
-const visitor = {
-  Scope(path, state) {
-    if (state.kind === "let") path.skip();
-  },
-
-  FunctionParent(path) {
-    path.skip();
-  },
-
-  VariableDeclaration(path, state) {
-    if (state.kind && path.node.kind !== state.kind) return;
-    const nodes = [];
-    const declarations = path.get("declarations");
-    let firstId;
-
-    for (const declar of declarations) {
-      firstId = declar.node.id;
-
-      if (declar.node.init) {
-        nodes.push(expressionStatement(assignmentExpression("=", declar.node.id, declar.node.init)));
-      }
-
-      for (const name of Object.keys(declar.getBindingIdentifiers())) {
-        state.emit(identifier(name), name, declar.node.init !== null);
-      }
-    }
-
-    if (path.parentPath.isFor({
-      left: path.node
-    })) {
-      path.replaceWith(firstId);
-    } else {
-      path.replaceWithMultiple(nodes);
-    }
+Object.defineProperty(exports, "ImportInjector", {
+  enumerable: true,
+  get: function () {
+    return _importInjector.default;
   }
+});
+exports.addDefault = addDefault;
+exports.addNamed = addNamed;
+exports.addNamespace = addNamespace;
+exports.addSideEffect = addSideEffect;
+Object.defineProperty(exports, "isModule", {
+  enumerable: true,
+  get: function () {
+    return _isModule.default;
+  }
+});
 
-};
+var _importInjector = require("./import-injector");
 
-function hoistVariables(path, emit, kind = "var") {
-  path.traverse(visitor, {
-    kind,
-    emit
-  });
+var _isModule = require("./is-module");
+
+function addDefault(path, importedSource, opts) {
+  return new _importInjector.default(path).addDefault(importedSource, opts);
+}
+
+function addNamed(path, name, importedSource, opts) {
+  return new _importInjector.default(path).addNamed(name, importedSource, opts);
+}
+
+function addNamespace(path, importedSource, opts) {
+  return new _importInjector.default(path).addNamespace(importedSource, opts);
+}
+
+function addSideEffect(path, importedSource, opts) {
+  return new _importInjector.default(path).addSideEffect(importedSource, opts);
 }
