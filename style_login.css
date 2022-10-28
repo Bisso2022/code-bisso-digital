@@ -1,0 +1,124 @@
+    @font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+.section_connexion{
+    background-color: #2292F2;
+    min-height: 100vh;
+}
+.section_connexion .container .col-md-8{
+    margin-top: 7%;
+    border-radius: 25px;
+    background-color: white;
+    display: inline-flex;
+    box-shadow: 1px 1px 12px rgb(72, 71, 71);
+}
+.section_connexion .container .col-md-8 .right{
+    margin-left: 14%;
+    margin-top: 45px;
+}
+.section_connexion .container .col-md-8 .right h1{
+    font-family: 'PourPara';
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #363535;
+    text-align: center;
+}
+.section_connexion .container .col-md-8 .right label{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #363535;
+    font-family: 'pourPara';
+    font-size: 16px;
+}
+.section_connexion .container .col-md-8 .right input{
+    border-radius: 25px;
+    width: 350px;
+    height: 42px;
+}
+.section_connexion .container .col-md-8 .right .form-check-input{
+    border-radius: 5px !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: 13px;
+}
+.section_connexion .container .col-md-8 .right .btn-primary{
+    background-color: #2292F2 !important;
+    border-color: #2292F2;
+    font-size: 17px;
+    font-family: 'pourPara';
+    border-radius: 25px;
+    width: 350px;
+    height: 42px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    box-shadow: 1px 1px 12px rgba(228, 225, 225, 0.822);
+}
+.section_connexion .container .col-md-8 .right .btn-primary:hover{
+    background-color: #0361b3 !important;
+    border-color: #0361b3   !important;
+}
+.section_connexion .container .col-md-8 .right .btn-link{
+    text-decoration: none;
+    font-family: 'pourPara';
+    font-size: 16px;
+    margin-bottom: 17px;
+}
+.section_connexion .container .col-md-8 .right .btn-link:hover{
+    text-decoration: underline;
+    color: #0466bb;
+}
+.section_connexion .container .col-md-8 .left{
+    margin-top: 16%;
+    margin-left: 4%;
+}
+/**responsive design*/
+@media screen and (max-width: 992px) {
+    .section_connexion .container .col-md-8 .left{
+        display: none;
+    }
+  }
+  @media screen and (max-width: 430px) {
+    .section_connexion .container .col-md-8 .right{
+        margin-left: 0px !important;
+        margin-top: 45px;
+    }
+    .section_connexion .container .col-md-8 .right input{
+        border-radius: 25px;
+        width: 300px;
+        height: 42px;
+    }
+    .section_connexion .container .col-md-8 .right .form-check-input{
+        border-radius: 5px !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-top: 13px;
+    }
+    .section_connexion .container .col-md-8 .right .btn-primary{
+        background-color: #2292F2 !important;
+        border-color: #2292F2;
+        font-size: 17px;
+        font-family: 'pourPara';
+        border-radius: 25px;
+        width: 300px;
+        height: 42px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        box-shadow: 1px 1px 12px rgba(228, 225, 225, 0.822);
+    }
+    .section_connexion .container .col-md-8 .right h1{
+        font-family: 'PourPara';
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #363535;
+        text-align: center;
+    }
+  }

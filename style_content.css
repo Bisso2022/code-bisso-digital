@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'pourTitre';
+    src: url("../font/Euclid\ Circular\ A\ Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: 'pourMintitre';
+        src: url("../font/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+        }
+    @font-face {
+        font-family: 'pourPara';
+        src: url("../font/Euclid\ Circular\ A\ Light.ttf") format("truetype");
+        }
+.card .card-header h1{
+    font-size: 24px;
+    font-family: 'pourPara';
+}
+.card .card-body .btn-primary{
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-family: 'pourPara';
+}
+.card .col-md-2{
+    background-color: #EFEFEF;
+    margin: 12px;
+    border-radius: 12px;  
+    margin-bottom: 25px;
+}
+.card .col-md-2:hover{
+    background-color: #939696 ;
+    color: white;
+}
+.card .col-md-2 p{
+    margin-top: 25px;
+    margin-bottom: 30px;
+    font-family: 'pourPara';
+    font-size: 18px;
+}
+.card .col-md-2 .fa-commenting-o{
+    font-size: 77px !important;
+    border: 1px solid white;
+    color: white;
+    background-color: #1F77CA ;
+    width: 150px;
+    height: 100px;
+    border-radius: 80px;
+    margin-top: 12px;
+    text-align: center;
+}
+.card .col-md-2 .fa-balance-scale{
+    font-size: 77px !important;
+    border: 1px solid white;
+    color: white;
+    background-color: #D82272 ;
+    width: 150px;
+    height: 100px;
+    border-radius: 80px;
+    margin-top: 12px;
+    text-align: center;
+}
+.card .col-md-2 .fa-shopping-cart{
+    font-size: 77px !important;
+    border: 1px solid white;
+    color: white;
+    background-color: #11CABF  ;
+    width: 150px;
+    height: 100px;
+    border-radius: 80px;
+    margin-top: 12px;
+    text-align: center;
+}
+.card .col-md-2 .fa-users{
+    font-size: 77px !important;
+    border: 1px solid white;
+    color: white;
+    background-color: #10C444 ;
+    width: 150px;
+    height: 100px;
+    border-radius: 80px;
+    margin-top: 12px;
+    text-align: center;
+}
+.card h5{
+    font-size: 24px;
+    font-family: 'pourPara';
+}
+.card p{
+    font-size: 18px;
+    font-family: 'pourPara';
+}
+.col-md-5 ul li{
+    font-size: 17px;
+    text-transform: capitalize;
+    font-family: 'pourPara';
+}
+.table{
+    font-size: 16px;
+    font-family: 'pourPara';
+}
