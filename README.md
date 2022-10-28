@@ -1,19 +1,19 @@
-# @babel/helper-member-expression-to-functions
+# @babel/helper-module-imports
 
-> Helper function to replace certain member expressions with function calls
+> Babel helper functions for inserting module loads
 
-See our website [@babel/helper-member-expression-to-functions](https://babeljs.io/docs/en/babel-helper-member-expression-to-functions) for more information.
+See our website [@babel/helper-module-imports](https://babeljs.io/docs/en/babel-helper-module-imports) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-member-expression-to-functions
+npm install --save @babel/helper-module-imports
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-member-expression-to-functions
+yarn add @babel/helper-module-imports
 ```
