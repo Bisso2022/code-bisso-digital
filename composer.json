@@ -1,36 +1,48 @@
 {
-    "name": "doctrine/inflector",
-    "type": "library",
-    "description": "PHP Doctrine Inflector is a small library that can perform string manipulations with regard to upper/lowercase and singular/plural forms of words.",
-    "keywords": ["php", "strings", "words", "manipulation", "inflector", "inflection", "uppercase", "lowercase", "singular", "plural"],
-    "homepage": "https://www.doctrine-project.org/projects/inflector.html",
-    "license": "MIT",
+    "name":              "doctrine/instantiator",
+    "description":       "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
+    "type":              "library",
+    "license":           "MIT",
+    "homepage":          "https://www.doctrine-project.org/projects/instantiator.html",
+    "keywords":          [
+        "instantiate",
+        "constructor"
+    ],
     "authors": [
-        {"name": "Guilherme Blanco", "email": "guilhermeblanco@gmail.com"},
-        {"name": "Roman Borschel", "email": "roman@code-factory.org"},
-        {"name": "Benjamin Eberlei", "email": "kontakt@beberlei.de"},
-        {"name": "Jonathan Wage", "email": "jonwage@gmail.com"},
-        {"name": "Johannes Schmitt", "email": "schmittjoh@gmail.com"}
+        {
+            "name":     "Marco Pivetta",
+            "email":    "ocramius@gmail.com",
+            "homepage": "https://ocramius.github.io/"
+        }
     ],
     "require": {
-        "php": "^7.2 || ^8.0"
+        "php": "^7.1 || ^8.0"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^8.2",
-        "phpstan/phpstan": "^0.12",
-        "phpstan/phpstan-phpunit": "^0.12",
-        "phpstan/phpstan-strict-rules": "^0.12",
-        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
-        "vimeo/psalm": "^4.10"
+        "ext-phar":                  "*",
+        "ext-pdo":                   "*",
+        "doctrine/coding-standard":  "^9",
+        "phpbench/phpbench":         "^0.16 || ^1",
+        "phpstan/phpstan":           "^1.4",
+        "phpstan/phpstan-phpunit":   "^1",
+        "phpunit/phpunit":           "^7.5 || ^8.5 || ^9.5",
+        "vimeo/psalm": "^4.22"
     },
     "autoload": {
         "psr-4": {
-            "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
+            "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "Doctrine\\Tests\\Inflector\\": "tests/Doctrine/Tests/Inflector"
+        "psr-0": {
+            "DoctrineTest\\InstantiatorPerformance\\": "tests",
+            "DoctrineTest\\InstantiatorTest\\": "tests",
+            "DoctrineTest\\InstantiatorTestAsset\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
 }
