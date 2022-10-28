@@ -3,223 +3,104 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "FEATURES", {
-  enumerable: true,
-  get: function () {
-    return _features.FEATURES;
-  }
-});
-exports.createClassFeaturePlugin = createClassFeaturePlugin;
-Object.defineProperty(exports, "enableFeature", {
-  enumerable: true,
-  get: function () {
-    return _features.enableFeature;
-  }
-});
-Object.defineProperty(exports, "injectInitialization", {
-  enumerable: true,
-  get: function () {
-    return _misc.injectInitialization;
-  }
-});
+exports.createRegExpFeaturePlugin = createRegExpFeaturePlugin;
 
-var _core = require("@babel/core");
-
-var _helperFunctionName = require("@babel/helper-function-name");
-
-var _helperSplitExportDeclaration = require("@babel/helper-split-export-declaration");
-
-var _fields = require("./fields");
-
-var _decorators = require("./decorators");
-
-var _misc = require("./misc");
+var _regexpuCore = require("regexpu-core");
 
 var _features = require("./features");
 
-var _typescript = require("./typescript");
+var _util = require("./util");
 
-const version = "7.17.9".split(".").reduce((v, x) => v * 1e5 + +x, 0);
-const versionKey = "@babel/plugin-class-features/version";
+var _core = require("@babel/core");
 
-function createClassFeaturePlugin({
+var _helperAnnotateAsPure = require("@babel/helper-annotate-as-pure");
+
+const version = "7.17.0".split(".").reduce((v, x) => v * 1e5 + +x, 0);
+const versionKey = "@babel/plugin-regexp-features/version";
+
+function createRegExpFeaturePlugin({
   name,
   feature,
-  loose,
-  manipulateOptions,
-  api = {
-    assumption: () => void 0
-  },
-  inherits
+  options = {},
+  manipulateOptions = () => {}
 }) {
-  const setPublicClassFields = api.assumption("setPublicClassFields");
-  const privateFieldsAsProperties = api.assumption("privateFieldsAsProperties");
-  const constantSuper = api.assumption("constantSuper");
-  const noDocumentAll = api.assumption("noDocumentAll");
-
-  if (loose === true) {
-    const explicit = [];
-
-    if (setPublicClassFields !== undefined) {
-      explicit.push(`"setPublicClassFields"`);
-    }
-
-    if (privateFieldsAsProperties !== undefined) {
-      explicit.push(`"privateFieldsAsProperties"`);
-    }
-
-    if (explicit.length !== 0) {
-      console.warn(`[${name}]: You are using the "loose: true" option and you are` + ` explicitly setting a value for the ${explicit.join(" and ")}` + ` assumption${explicit.length > 1 ? "s" : ""}. The "loose" option` + ` can cause incompatibilities with the other class features` + ` plugins, so it's recommended that you replace it with the` + ` following top-level option:\n` + `\t"assumptions": {\n` + `\t\t"setPublicClassFields": true,\n` + `\t\t"privateFieldsAsProperties": true\n` + `\t}`);
-    }
-  }
-
   return {
     name,
     manipulateOptions,
-    inherits,
 
     pre() {
-      (0, _features.enableFeature)(this.file, feature, loose);
+      var _file$get;
 
-      if (!this.file.get(versionKey) || this.file.get(versionKey) < version) {
-        this.file.set(versionKey, version);
+      const {
+        file
+      } = this;
+      const features = (_file$get = file.get(_features.featuresKey)) != null ? _file$get : 0;
+      let newFeatures = (0, _features.enableFeature)(features, _features.FEATURES[feature]);
+      const {
+        useUnicodeFlag,
+        runtime = true
+      } = options;
+
+      if (useUnicodeFlag === false) {
+        newFeatures = (0, _features.enableFeature)(newFeatures, _features.FEATURES.unicodeFlag);
+      }
+
+      if (newFeatures !== features) {
+        file.set(_features.featuresKey, newFeatures);
+      }
+
+      if (!runtime) {
+        file.set(_features.runtimeKey, false);
+      }
+
+      if (!file.has(versionKey) || file.get(versionKey) < version) {
+        file.set(versionKey, version);
       }
     },
 
     visitor: {
-      Class(path, state) {
-        if (this.file.get(versionKey) !== version) return;
-        if (!(0, _features.shouldTransform)(path, this.file)) return;
-        if (path.isClassDeclaration()) (0, _typescript.assertFieldTransformed)(path);
-        const loose = (0, _features.isLoose)(this.file, feature);
-        let constructor;
-        const isDecorated = (0, _decorators.hasDecorators)(path.node);
-        const props = [];
-        const elements = [];
-        const computedPaths = [];
-        const privateNames = new Set();
-        const body = path.get("body");
+      RegExpLiteral(path) {
+        var _file$get2;
 
-        for (const path of body.get("body")) {
-          if ((path.isClassProperty() || path.isClassMethod()) && path.node.computed) {
-            computedPaths.push(path);
-          }
+        const {
+          node
+        } = path;
+        const {
+          file
+        } = this;
+        const features = file.get(_features.featuresKey);
+        const runtime = (_file$get2 = file.get(_features.runtimeKey)) != null ? _file$get2 : true;
+        const regexpuOptions = (0, _util.generateRegexpuOptions)(features);
+        if ((0, _util.canSkipRegexpu)(node, regexpuOptions)) return;
+        const namedCaptureGroups = {};
 
-          if (path.isPrivate()) {
-            const {
-              name
-            } = path.node.key.id;
-            const getName = `get ${name}`;
-            const setName = `set ${name}`;
-
-            if (path.isClassPrivateMethod()) {
-              if (path.node.kind === "get") {
-                if (privateNames.has(getName) || privateNames.has(name) && !privateNames.has(setName)) {
-                  throw path.buildCodeFrameError("Duplicate private field");
-                }
-
-                privateNames.add(getName).add(name);
-              } else if (path.node.kind === "set") {
-                if (privateNames.has(setName) || privateNames.has(name) && !privateNames.has(getName)) {
-                  throw path.buildCodeFrameError("Duplicate private field");
-                }
-
-                privateNames.add(setName).add(name);
-              }
-            } else {
-              if (privateNames.has(name) && !privateNames.has(getName) && !privateNames.has(setName) || privateNames.has(name) && (privateNames.has(getName) || privateNames.has(setName))) {
-                throw path.buildCodeFrameError("Duplicate private field");
-              }
-
-              privateNames.add(name);
-            }
-          }
-
-          if (path.isClassMethod({
-            kind: "constructor"
-          })) {
-            constructor = path;
-          } else {
-            elements.push(path);
-
-            if (path.isProperty() || path.isPrivate() || path.isStaticBlock != null && path.isStaticBlock()) {
-              props.push(path);
-            }
-          }
+        if (regexpuOptions.namedGroups === "transform") {
+          regexpuOptions.onNamedGroup = (name, index) => {
+            namedCaptureGroups[name] = index;
+          };
         }
 
-        if (!props.length && !isDecorated) return;
-        const innerBinding = path.node.id;
-        let ref;
+        node.pattern = _regexpuCore(node.pattern, node.flags, regexpuOptions);
 
-        if (!innerBinding || path.isClassExpression()) {
-          (0, _helperFunctionName.default)(path);
-          ref = path.scope.generateUidIdentifier("class");
-        } else {
-          ref = _core.types.cloneNode(path.node.id);
+        if (regexpuOptions.namedGroups === "transform" && Object.keys(namedCaptureGroups).length > 0 && runtime && !isRegExpTest(path)) {
+          const call = _core.types.callExpression(this.addHelper("wrapRegExp"), [node, _core.types.valueToNode(namedCaptureGroups)]);
+
+          (0, _helperAnnotateAsPure.default)(call);
+          path.replaceWith(call);
         }
 
-        const privateNamesMap = (0, _fields.buildPrivateNamesMap)(props);
-        const privateNamesNodes = (0, _fields.buildPrivateNamesNodes)(privateNamesMap, privateFieldsAsProperties != null ? privateFieldsAsProperties : loose, state);
-        (0, _fields.transformPrivateNamesUsage)(ref, path, privateNamesMap, {
-          privateFieldsAsProperties: privateFieldsAsProperties != null ? privateFieldsAsProperties : loose,
-          noDocumentAll,
-          innerBinding
-        }, state);
-        let keysNodes, staticNodes, instanceNodes, pureStaticNodes, wrapClass;
-
-        if (isDecorated) {
-          staticNodes = pureStaticNodes = keysNodes = [];
-          ({
-            instanceNodes,
-            wrapClass
-          } = (0, _decorators.buildDecoratedClass)(ref, path, elements, this.file));
-        } else {
-          keysNodes = (0, _misc.extractComputedKeys)(ref, path, computedPaths, this.file);
-          ({
-            staticNodes,
-            pureStaticNodes,
-            instanceNodes,
-            wrapClass
-          } = (0, _fields.buildFieldsInitNodes)(ref, path.node.superClass, props, privateNamesMap, state, setPublicClassFields != null ? setPublicClassFields : loose, privateFieldsAsProperties != null ? privateFieldsAsProperties : loose, constantSuper != null ? constantSuper : loose, innerBinding));
-        }
-
-        if (instanceNodes.length > 0) {
-          (0, _misc.injectInitialization)(path, constructor, instanceNodes, (referenceVisitor, state) => {
-            if (isDecorated) return;
-
-            for (const prop of props) {
-              if (_core.types.isStaticBlock != null && _core.types.isStaticBlock(prop.node) || prop.node.static) continue;
-              prop.traverse(referenceVisitor, state);
-            }
-          });
-        }
-
-        const wrappedPath = wrapClass(path);
-        wrappedPath.insertBefore([...privateNamesNodes, ...keysNodes]);
-
-        if (staticNodes.length > 0) {
-          wrappedPath.insertAfter(staticNodes);
-        }
-
-        if (pureStaticNodes.length > 0) {
-          wrappedPath.find(parent => parent.isStatement() || parent.isDeclaration()).insertAfter(pureStaticNodes);
-        }
-      },
-
-      ExportDefaultDeclaration(path) {
-        if (this.file.get(versionKey) !== version) return;
-        const decl = path.get("declaration");
-
-        if (decl.isClassDeclaration() && (0, _decorators.hasDecorators)(decl.node)) {
-          if (decl.node.id) {
-            (0, _helperSplitExportDeclaration.default)(path);
-          } else {
-            decl.node.type = "ClassExpression";
-          }
-        }
+        node.flags = (0, _util.transformFlags)(regexpuOptions, node.flags);
       }
 
     }
   };
+}
+
+function isRegExpTest(path) {
+  return path.parentPath.isMemberExpression({
+    object: path.node,
+    computed: false
+  }) && path.parentPath.get("property").isIdentifier({
+    name: "test"
+  });
 }

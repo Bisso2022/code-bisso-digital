@@ -3,29 +3,68 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isIterableIterator = isIterableIterator;
-exports.mergeOptions = mergeOptions;
+exports.canSkipRegexpu = canSkipRegexpu;
+exports.generateRegexpuOptions = generateRegexpuOptions;
+exports.transformFlags = transformFlags;
 
-function mergeOptions(target, source) {
-  for (const k of Object.keys(source)) {
-    if ((k === "parserOpts" || k === "generatorOpts" || k === "assumptions") && source[k]) {
-      const parserOpts = source[k];
-      const targetObj = target[k] || (target[k] = {});
-      mergeDefaultFields(targetObj, parserOpts);
-    } else {
-      const val = source[k];
-      if (val !== undefined) target[k] = val;
+var _features = require("./features");
+
+function generateRegexpuOptions(toTransform) {
+  const feat = (name, ok = "transform") => {
+    return (0, _features.hasFeature)(toTransform, _features.FEATURES[name]) ? ok : false;
+  };
+
+  return {
+    unicodeFlag: feat("unicodeFlag"),
+    unicodeSetsFlag: feat("unicodeSetsFlag") || feat("unicodeSetsFlag_syntax", "parse"),
+    dotAllFlag: feat("dotAllFlag"),
+    unicodePropertyEscapes: feat("unicodePropertyEscape"),
+    namedGroups: feat("namedCaptureGroups"),
+    onNamedGroup: () => {}
+  };
+}
+
+function canSkipRegexpu(node, options) {
+  const {
+    flags,
+    pattern
+  } = node;
+
+  if (flags.includes("v")) {
+    if (options.unicodeSetsFlag === "transform") return false;
+  }
+
+  if (flags.includes("u")) {
+    if (options.unicodeFlag === "transform") return false;
+
+    if (options.unicodePropertyEscapes === "transform" && /\\[pP]{/.test(pattern)) {
+      return false;
     }
   }
-}
 
-function mergeDefaultFields(target, source) {
-  for (const k of Object.keys(source)) {
-    const val = source[k];
-    if (val !== undefined) target[k] = val;
+  if (flags.includes("s")) {
+    if (options.dotAllFlag === "transform") return false;
   }
+
+  if (options.namedGroups === "transform" && /\(\?<(?![=!])/.test(pattern)) {
+    return false;
+  }
+
+  return true;
 }
 
-function isIterableIterator(value) {
-  return !!value && typeof value.next === "function" && typeof value[Symbol.iterator] === "function";
+function transformFlags(regexpuOptions, flags) {
+  if (regexpuOptions.unicodeSetsFlag === "transform") {
+    flags = flags.replace("v", "u");
+  }
+
+  if (regexpuOptions.unicodeFlag === "transform") {
+    flags = flags.replace("u", "");
+  }
+
+  if (regexpuOptions.dotAllFlag === "transform") {
+    flags = flags.replace("s", "");
+  }
+
+  return flags;
 }
