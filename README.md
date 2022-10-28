@@ -1,19 +1,19 @@
-# @babel/code-frame
+# @babel/compat-data
 
-> Generate errors that contain a code frame that point to source locations.
+> 
 
-See our website [@babel/code-frame](https://babeljs.io/docs/en/babel-code-frame) for more information.
+See our website [@babel/compat-data](https://babeljs.io/docs/en/babel-compat-data) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save-dev @babel/code-frame
+npm install --save @babel/compat-data
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/code-frame --dev
+yarn add @babel/compat-data
 ```
