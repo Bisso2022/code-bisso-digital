@@ -3,73 +3,93 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createConfigItem = createConfigItem;
-exports.createConfigItemSync = exports.createConfigItemAsync = void 0;
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function () {
-    return _full.default;
-  }
-});
-exports.loadPartialConfigSync = exports.loadPartialConfigAsync = exports.loadPartialConfig = exports.loadOptionsSync = exports.loadOptionsAsync = exports.loadOptions = void 0;
+exports.default = parser;
 
-function _gensync() {
-  const data = require("gensync");
+function _parser() {
+  const data = require("@babel/parser");
 
-  _gensync = function () {
+  _parser = function () {
     return data;
   };
 
   return data;
 }
 
-var _full = require("./full");
+function _codeFrame() {
+  const data = require("@babel/code-frame");
 
-var _partial = require("./partial");
+  _codeFrame = function () {
+    return data;
+  };
 
-var _item = require("./item");
+  return data;
+}
 
-const loadOptionsRunner = _gensync()(function* (opts) {
-  var _config$options;
+var _missingPluginHelper = require("./util/missing-plugin-helper");
 
-  const config = yield* (0, _full.default)(opts);
-  return (_config$options = config == null ? void 0 : config.options) != null ? _config$options : null;
-});
+function* parser(pluginPasses, {
+  parserOpts,
+  highlightCode = true,
+  filename = "unknown"
+}, code) {
+  try {
+    const results = [];
 
-const createConfigItemRunner = _gensync()(_item.createConfigItem);
+    for (const plugins of pluginPasses) {
+      for (const plugin of plugins) {
+        const {
+          parserOverride
+        } = plugin;
 
-const maybeErrback = runner => (opts, callback) => {
-  if (callback === undefined && typeof opts === "function") {
-    callback = opts;
-    opts = undefined;
-  }
+        if (parserOverride) {
+          const ast = parserOverride(code, parserOpts, _parser().parse);
+          if (ast !== undefined) results.push(ast);
+        }
+      }
+    }
 
-  return callback ? runner.errback(opts, callback) : runner.sync(opts);
-};
+    if (results.length === 0) {
+      return (0, _parser().parse)(code, parserOpts);
+    } else if (results.length === 1) {
+      yield* [];
 
-const loadPartialConfig = maybeErrback(_partial.loadPartialConfig);
-exports.loadPartialConfig = loadPartialConfig;
-const loadPartialConfigSync = _partial.loadPartialConfig.sync;
-exports.loadPartialConfigSync = loadPartialConfigSync;
-const loadPartialConfigAsync = _partial.loadPartialConfig.async;
-exports.loadPartialConfigAsync = loadPartialConfigAsync;
-const loadOptions = maybeErrback(loadOptionsRunner);
-exports.loadOptions = loadOptions;
-const loadOptionsSync = loadOptionsRunner.sync;
-exports.loadOptionsSync = loadOptionsSync;
-const loadOptionsAsync = loadOptionsRunner.async;
-exports.loadOptionsAsync = loadOptionsAsync;
-const createConfigItemSync = createConfigItemRunner.sync;
-exports.createConfigItemSync = createConfigItemSync;
-const createConfigItemAsync = createConfigItemRunner.async;
-exports.createConfigItemAsync = createConfigItemAsync;
+      if (typeof results[0].then === "function") {
+        throw new Error(`You appear to be using an async parser plugin, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
+      }
 
-function createConfigItem(target, options, callback) {
-  if (callback !== undefined) {
-    return createConfigItemRunner.errback(target, options, callback);
-  } else if (typeof options === "function") {
-    return createConfigItemRunner.errback(target, undefined, callback);
-  } else {
-    return createConfigItemRunner.sync(target, options);
+      return results[0];
+    }
+
+    throw new Error("More than one plugin attempted to override parsing.");
+  } catch (err) {
+    if (err.code === "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED") {
+      err.message += "\nConsider renaming the file to '.mjs', or setting sourceType:module " + "or sourceType:unambiguous in your Babel config for this file.";
+    }
+
+    const {
+      loc,
+      missingPlugin
+    } = err;
+
+    if (loc) {
+      const codeFrame = (0, _codeFrame().codeFrameColumns)(code, {
+        start: {
+          line: loc.line,
+          column: loc.column + 1
+        }
+      }, {
+        highlightCode
+      });
+
+      if (missingPlugin) {
+        err.message = `${filename}: ` + (0, _missingPluginHelper.default)(missingPlugin[0], loc, codeFrame);
+      } else {
+        err.message = `${filename}: ${err.message}\n\n` + codeFrame;
+      }
+
+      err.code = "BABEL_PARSE_ERROR";
+    }
+
+    throw err;
   }
 }
