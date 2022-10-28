@@ -1,30 +1,29 @@
 {
-  "TODO": "The @babel/traverse dependency is only needed for the NodePath TS type. We can consider exporting it from @babel/core.",
-  "_from": "@babel/helper-hoist-variables@^7.16.7",
-  "_id": "@babel/helper-hoist-variables@7.16.7",
+  "_from": "@babel/helper-member-expression-to-functions@^7.17.7",
+  "_id": "@babel/helper-member-expression-to-functions@7.17.7",
   "_inBundle": false,
-  "_integrity": "sha512-m04d/0Op34H5v7pbZw6pSKP7weA6lsMvfiIAMeIvkY/R4xQtBSMFEigu9QTZ2qB/9l22vsxtM8a+Q8CzD255fg==",
-  "_location": "/@babel/helper-hoist-variables",
+  "_integrity": "sha512-thxXgnQ8qQ11W2wVUObIqDL4p148VMxkt5T/qpN5k2fboRyzFGFmKsTGViquyM5QHKUy48OZoca8kw4ajaDPyw==",
+  "_location": "/@babel/helper-member-expression-to-functions",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/helper-hoist-variables@^7.16.7",
-    "name": "@babel/helper-hoist-variables",
-    "escapedName": "@babel%2fhelper-hoist-variables",
+    "raw": "@babel/helper-member-expression-to-functions@^7.17.7",
+    "name": "@babel/helper-member-expression-to-functions",
+    "escapedName": "@babel%2fhelper-member-expression-to-functions",
     "scope": "@babel",
-    "rawSpec": "^7.16.7",
+    "rawSpec": "^7.17.7",
     "saveSpec": null,
-    "fetchSpec": "^7.16.7"
+    "fetchSpec": "^7.17.7"
   },
   "_requiredBy": [
-    "/@babel/plugin-transform-modules-systemjs",
-    "/@babel/traverse"
+    "/@babel/helper-create-class-features-plugin",
+    "/@babel/helper-replace-supers"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/helper-hoist-variables/-/helper-hoist-variables-7.16.7.tgz",
-  "_shasum": "86bcb19a77a509c7b77d0e22323ef588fa58c246",
-  "_spec": "@babel/helper-hoist-variables@^7.16.7",
-  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\traverse",
+  "_resolved": "https://registry.npmjs.org/@babel/helper-member-expression-to-functions/-/helper-member-expression-to-functions-7.17.7.tgz",
+  "_shasum": "a34013b57d8542a8c4ff8ba3f747c02452a4d8c4",
+  "_spec": "@babel/helper-member-expression-to-functions@^7.17.7",
+  "_where": "C:\\laragon\\www\\agenceweb\\node_modules\\@babel\\helper-create-class-features-plugin",
   "author": {
     "name": "The Babel Team",
     "url": "https://babel.dev/team"
@@ -34,27 +33,27 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@babel/types": "^7.16.7"
+    "@babel/types": "^7.17.0"
   },
   "deprecated": false,
-  "description": "Helper function to hoist variables",
+  "description": "Helper function to replace certain member expressions with function calls",
   "devDependencies": {
-    "@babel/traverse": "^7.16.7"
+    "@babel/traverse": "^7.17.3"
   },
   "engines": {
     "node": ">=6.9.0"
   },
-  "homepage": "https://babel.dev/docs/en/next/babel-helper-hoist-variables",
+  "homepage": "https://babel.dev/docs/en/next/babel-helper-member-expression-to-functions",
   "license": "MIT",
   "main": "./lib/index.js",
-  "name": "@babel/helper-hoist-variables",
+  "name": "@babel/helper-member-expression-to-functions",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-helper-hoist-variables"
+    "directory": "packages/babel-helper-member-expression-to-functions"
   },
-  "version": "7.16.7"
+  "version": "7.17.7"
 }
