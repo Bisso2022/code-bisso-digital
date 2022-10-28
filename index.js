@@ -3,7 +3,219 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.run = run;
+exports.DEFAULT_EXTENSIONS = void 0;
+Object.defineProperty(exports, "File", {
+  enumerable: true,
+  get: function () {
+    return _file.default;
+  }
+});
+exports.OptionManager = void 0;
+exports.Plugin = Plugin;
+Object.defineProperty(exports, "buildExternalHelpers", {
+  enumerable: true,
+  get: function () {
+    return _buildExternalHelpers.default;
+  }
+});
+Object.defineProperty(exports, "createConfigItem", {
+  enumerable: true,
+  get: function () {
+    return _config.createConfigItem;
+  }
+});
+Object.defineProperty(exports, "createConfigItemAsync", {
+  enumerable: true,
+  get: function () {
+    return _config.createConfigItemAsync;
+  }
+});
+Object.defineProperty(exports, "createConfigItemSync", {
+  enumerable: true,
+  get: function () {
+    return _config.createConfigItemSync;
+  }
+});
+Object.defineProperty(exports, "getEnv", {
+  enumerable: true,
+  get: function () {
+    return _environment.getEnv;
+  }
+});
+Object.defineProperty(exports, "loadOptions", {
+  enumerable: true,
+  get: function () {
+    return _config.loadOptions;
+  }
+});
+Object.defineProperty(exports, "loadOptionsAsync", {
+  enumerable: true,
+  get: function () {
+    return _config.loadOptionsAsync;
+  }
+});
+Object.defineProperty(exports, "loadOptionsSync", {
+  enumerable: true,
+  get: function () {
+    return _config.loadOptionsSync;
+  }
+});
+Object.defineProperty(exports, "loadPartialConfig", {
+  enumerable: true,
+  get: function () {
+    return _config.loadPartialConfig;
+  }
+});
+Object.defineProperty(exports, "loadPartialConfigAsync", {
+  enumerable: true,
+  get: function () {
+    return _config.loadPartialConfigAsync;
+  }
+});
+Object.defineProperty(exports, "loadPartialConfigSync", {
+  enumerable: true,
+  get: function () {
+    return _config.loadPartialConfigSync;
+  }
+});
+Object.defineProperty(exports, "parse", {
+  enumerable: true,
+  get: function () {
+    return _parse.parse;
+  }
+});
+Object.defineProperty(exports, "parseAsync", {
+  enumerable: true,
+  get: function () {
+    return _parse.parseAsync;
+  }
+});
+Object.defineProperty(exports, "parseSync", {
+  enumerable: true,
+  get: function () {
+    return _parse.parseSync;
+  }
+});
+Object.defineProperty(exports, "resolvePlugin", {
+  enumerable: true,
+  get: function () {
+    return _files.resolvePlugin;
+  }
+});
+Object.defineProperty(exports, "resolvePreset", {
+  enumerable: true,
+  get: function () {
+    return _files.resolvePreset;
+  }
+});
+Object.defineProperty(exports, "template", {
+  enumerable: true,
+  get: function () {
+    return _template().default;
+  }
+});
+Object.defineProperty(exports, "tokTypes", {
+  enumerable: true,
+  get: function () {
+    return _parser().tokTypes;
+  }
+});
+Object.defineProperty(exports, "transform", {
+  enumerable: true,
+  get: function () {
+    return _transform.transform;
+  }
+});
+Object.defineProperty(exports, "transformAsync", {
+  enumerable: true,
+  get: function () {
+    return _transform.transformAsync;
+  }
+});
+Object.defineProperty(exports, "transformFile", {
+  enumerable: true,
+  get: function () {
+    return _transformFile.transformFile;
+  }
+});
+Object.defineProperty(exports, "transformFileAsync", {
+  enumerable: true,
+  get: function () {
+    return _transformFile.transformFileAsync;
+  }
+});
+Object.defineProperty(exports, "transformFileSync", {
+  enumerable: true,
+  get: function () {
+    return _transformFile.transformFileSync;
+  }
+});
+Object.defineProperty(exports, "transformFromAst", {
+  enumerable: true,
+  get: function () {
+    return _transformAst.transformFromAst;
+  }
+});
+Object.defineProperty(exports, "transformFromAstAsync", {
+  enumerable: true,
+  get: function () {
+    return _transformAst.transformFromAstAsync;
+  }
+});
+Object.defineProperty(exports, "transformFromAstSync", {
+  enumerable: true,
+  get: function () {
+    return _transformAst.transformFromAstSync;
+  }
+});
+Object.defineProperty(exports, "transformSync", {
+  enumerable: true,
+  get: function () {
+    return _transform.transformSync;
+  }
+});
+Object.defineProperty(exports, "traverse", {
+  enumerable: true,
+  get: function () {
+    return _traverse().default;
+  }
+});
+exports.version = exports.types = void 0;
+
+var _file = require("./transformation/file/file");
+
+var _buildExternalHelpers = require("./tools/build-external-helpers");
+
+var _files = require("./config/files");
+
+var _environment = require("./config/helpers/environment");
+
+function _types() {
+  const data = require("@babel/types");
+
+  _types = function () {
+    return data;
+  };
+
+  return data;
+}
+
+Object.defineProperty(exports, "types", {
+  enumerable: true,
+  get: function () {
+    return _types();
+  }
+});
+
+function _parser() {
+  const data = require("@babel/parser");
+
+  _parser = function () {
+    return data;
+  };
+
+  return data;
+}
 
 function _traverse() {
   const data = require("@babel/traverse");
@@ -15,113 +227,40 @@ function _traverse() {
   return data;
 }
 
-var _pluginPass = require("./plugin-pass");
+function _template() {
+  const data = require("@babel/template");
 
-var _blockHoistPlugin = require("./block-hoist-plugin");
-
-var _normalizeOpts = require("./normalize-opts");
-
-var _normalizeFile = require("./normalize-file");
-
-var _generate = require("./file/generate");
-
-var _deepArray = require("../config/helpers/deep-array");
-
-function* run(config, code, ast) {
-  const file = yield* (0, _normalizeFile.default)(config.passes, (0, _normalizeOpts.default)(config), code, ast);
-  const opts = file.opts;
-
-  try {
-    yield* transformFile(file, config.passes);
-  } catch (e) {
-    var _opts$filename;
-
-    e.message = `${(_opts$filename = opts.filename) != null ? _opts$filename : "unknown"}: ${e.message}`;
-
-    if (!e.code) {
-      e.code = "BABEL_TRANSFORM_ERROR";
-    }
-
-    throw e;
-  }
-
-  let outputCode, outputMap;
-
-  try {
-    if (opts.code !== false) {
-      ({
-        outputCode,
-        outputMap
-      } = (0, _generate.default)(config.passes, file));
-    }
-  } catch (e) {
-    var _opts$filename2;
-
-    e.message = `${(_opts$filename2 = opts.filename) != null ? _opts$filename2 : "unknown"}: ${e.message}`;
-
-    if (!e.code) {
-      e.code = "BABEL_GENERATE_ERROR";
-    }
-
-    throw e;
-  }
-
-  return {
-    metadata: file.metadata,
-    options: opts,
-    ast: opts.ast === true ? file.ast : null,
-    code: outputCode === undefined ? null : outputCode,
-    map: outputMap === undefined ? null : outputMap,
-    sourceType: file.ast.program.sourceType,
-    externalDependencies: (0, _deepArray.flattenToSet)(config.externalDependencies)
+  _template = function () {
+    return data;
   };
+
+  return data;
 }
 
-function* transformFile(file, pluginPasses) {
-  for (const pluginPairs of pluginPasses) {
-    const passPairs = [];
-    const passes = [];
-    const visitors = [];
+var _config = require("./config");
 
-    for (const plugin of pluginPairs.concat([(0, _blockHoistPlugin.default)()])) {
-      const pass = new _pluginPass.default(file, plugin.key, plugin.options);
-      passPairs.push([plugin, pass]);
-      passes.push(pass);
-      visitors.push(plugin.visitor);
-    }
+var _transform = require("./transform");
 
-    for (const [plugin, pass] of passPairs) {
-      const fn = plugin.pre;
+var _transformFile = require("./transform-file");
 
-      if (fn) {
-        const result = fn.call(pass, file);
-        yield* [];
+var _transformAst = require("./transform-ast");
 
-        if (isThenable(result)) {
-          throw new Error(`You appear to be using an plugin with an async .pre, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
-        }
-      }
-    }
+var _parse = require("./parse");
 
-    const visitor = _traverse().default.visitors.merge(visitors, passes, file.opts.wrapPluginVisitorMethod);
+const version = "7.17.9";
+exports.version = version;
+const DEFAULT_EXTENSIONS = Object.freeze([".js", ".jsx", ".es6", ".es", ".mjs", ".cjs"]);
+exports.DEFAULT_EXTENSIONS = DEFAULT_EXTENSIONS;
 
-    (0, _traverse().default)(file.ast, visitor, file.scope);
-
-    for (const [plugin, pass] of passPairs) {
-      const fn = plugin.post;
-
-      if (fn) {
-        const result = fn.call(pass, file);
-        yield* [];
-
-        if (isThenable(result)) {
-          throw new Error(`You appear to be using an plugin with an async .post, ` + `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` + `your @babel/core version.`);
-        }
-      }
-    }
+class OptionManager {
+  init(opts) {
+    return (0, _config.loadOptions)(opts);
   }
+
 }
 
-function isThenable(val) {
-  return !!val && (typeof val === "object" || typeof val === "function") && !!val.then && typeof val.then === "function";
+exports.OptionManager = OptionManager;
+
+function Plugin(alias) {
+  throw new Error(`The (${alias}) Babel 5 plugin is being run with an unsupported Babel version.`);
 }
